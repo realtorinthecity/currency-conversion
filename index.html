@@ -13,30 +13,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
     <style>
     :root {
-        --bg: #e9efec;
+        color-scheme: light dark;
+        --bg: #ffffff;
         --panel: #ffffff;
-        --ink: #12291f;
-        --muted: #5b6f66;
-        --line: #cfdad4;
-        --accent: #0f6b4f;
-        --accent-ink: #ffffff;
+        --ink: #0b0b0b;
+        --muted: #6f6f66;
+        --line: #e6e6de;
+        --accent: #dac520;
+        --accent-ink: #0b0b0b;
+        --focus: #0b0b0b;
         --warn: #8a4b00;
-        --base-bg: #12291f;
-        --base-ink: #f2f7f4;
+        --base-bg: #fbf6cc;
+        --base-ink: #0b0b0b;
+        --base-line: #dac520;
     }
 
     @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) {
-            --bg: #0e1a15;
-            --panel: #16271f;
-            --ink: #e8f1ec;
-            --muted: #93a89e;
-            --line: #274034;
-            --accent: #4fcf9f;
-            --accent-ink: #0e1a15;
+        :root {
+            --bg: #0b0b0b;
+            --panel: #151515;
+            --ink: #f5f5f0;
+            --muted: #9a9a8e;
+            --line: #2a2a26;
+            --accent: #dac520;
+            --accent-ink: #0b0b0b;
+            --focus: #dac520;
             --warn: #e5b567;
-            --base-bg: #e8f1ec;
-            --base-ink: #12291f;
+            --base-bg: #dac520;
+            --base-ink: #0b0b0b;
+            --base-line: #dac520;
         }
     }
 
@@ -167,7 +172,7 @@
     }
 
     :is(#amount, #base, #reset):focus-visible {
-        outline: 3px solid var(--accent);
+        outline: 3px solid var(--focus);
         outline-offset: 2px
     }
 
@@ -190,7 +195,7 @@
     .res.is-base {
         background: var(--base-bg);
         color: var(--base-ink);
-        border-color: var(--base-bg)
+        border-color: var(--base-line)
     }
 
     .res .code {
@@ -287,7 +292,7 @@
             </div>
         </main>
 
-        <footer>Designed &amp; Maintained by Charandeep Singh. All rights reserved 2026</footer>
+        <footer>This app is designed and maintained by Charandeep Singh</footer>
     </div>
 
     <script>
