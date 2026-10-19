@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FX Convert: USD, AED, INR, GEL</title>
+    <title>FX Convert</title>
     <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -26,8 +26,13 @@
         --base-bg: #fbf6cc;
         --base-ink: #0b0b0b;
         --base-line: #dac520;
+        --gbg: rgba(255, 255, 255, .55);
+        --gbd: rgba(255, 255, 255, .85);
+        --gsh: 0 8px 24px rgba(0, 0, 0, .14);
+        --gind: rgba(255, 255, 255, .95);
+        --gish: 0 2px 8px rgba(0, 0, 0, .12);
+        --gink: #0b0b0b;
     }
-
     @media (prefers-color-scheme: dark) {
         :root {
             --bg: #0b0b0b;
@@ -35,291 +40,285 @@
             --ink: #f5f5f0;
             --muted: #9a9a8e;
             --line: #2a2a26;
-            --accent: #dac520;
-            --accent-ink: #0b0b0b;
             --focus: #dac520;
             --warn: #e5b567;
             --base-bg: #dac520;
             --base-ink: #0b0b0b;
-            --base-line: #dac520;
+            --gbg: rgba(255, 255, 255, .10);
+            --gbd: rgba(255, 255, 255, .18);
+            --gsh: 0 8px 24px rgba(0, 0, 0, .5);
+            --gind: rgba(255, 255, 255, .22);
+            --gish: 0 2px 8px rgba(0, 0, 0, .3);
+            --gink: #ffffff;
         }
     }
 
-    /* One-screen layout: every size below scales from --u, so the page always fits the screen with no scrolling. */
+    /* One-screen layout: every size scales from --u, so the page fits any screen with no scrolling. */
     :root {
         --w: min(100vw, 420px);
         --h: 100vh;
         --u: min(calc(var(--w) / 100), calc(var(--h) * .0062));
     }
-    @media (min-width: 600px) {
-        :root { --h: min(calc(100vh - 48px), 900px) }
-    }
+    @media (min-width: 600px) { :root { --h: min(calc(100vh - 48px), 900px) } }
     @supports (height: 100dvh) {
         :root { --h: 100dvh }
-        @media (min-width: 600px) {
-            :root { --h: min(calc(100dvh - 48px), 900px) }
-        }
+        @media (min-width: 600px) { :root { --h: min(calc(100dvh - 48px), 900px) } }
     }
-    * {
-        box-sizing: border-box
-    }
-    html, body {
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        overscroll-behavior: none;
-        background: var(--bg)
-    }
+    * { box-sizing: border-box }
+    html, body { height: 100%; margin: 0; overflow: hidden; overscroll-behavior: none; background: var(--bg) }
     body {
         color: var(--ink);
         font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        touch-action: manipulation;
-        -webkit-text-size-adjust: 100%
+        display: flex; align-items: center; justify-content: center;
+        touch-action: manipulation; -webkit-text-size-adjust: 100%;
     }
     .app {
-        width: var(--w);
-        height: var(--h);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        background: var(--bg)
+        position: relative; width: var(--w); height: var(--h);
+        display: flex; flex-direction: column; overflow: hidden;
+        background:
+            radial-gradient(90% 26% at 18% 100%, rgba(218, 197, 32, .55), transparent 70%),
+            radial-gradient(70% 20% at 92% 97%, rgba(218, 197, 32, .35), transparent 70%),
+            var(--bg);
     }
     @media (min-width: 600px) {
-        .app {
-            border: 1px solid var(--line);
-            border-radius: 28px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, .12)
-        }
+        .app { border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 10px 40px rgba(0, 0, 0, .12) }
     }
-    main {
-        flex: 1;
-        min-height: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: calc(var(--u) * 3) calc(var(--u) * 5) calc(var(--u) * 2)
+
+    /* Fixed header: same position on all three screens */
+    .hdr { flex: none; padding: calc(var(--u) * 5) calc(var(--u) * 5) 0 }
+    h5 { font-size: calc(var(--u) * 4); font-weight: 400; margin: 0; color: var(--muted) }
+    h1 { font-size: calc(var(--u) * 6.2); line-height: 1.2; font-weight: 800; margin: 0; letter-spacing: -.01em }
+    .hh {
+        display: flex; align-items: center; gap: calc(var(--u) * 2);
+        margin-top: calc(var(--u) * 2); height: calc(var(--u) * 5);
+        font-size: calc(var(--u) * 4); font-weight: 600;
     }
-    .hero {
-        margin: 0 0 calc(var(--u) * 5)
+    .hh i { display: block; width: var(--u); height: calc(var(--u) * 4.2); border-radius: calc(var(--u) * .5); background: var(--accent) }
+
+    .panels { flex: 1; min-height: 0; position: relative }
+    .panel {
+        position: absolute; inset: 0; display: flex; flex-direction: column;
+        padding: calc(var(--u) * 4) calc(var(--u) * 5) 0; animation: fade .25s ease;
     }
-    h5 {
-        font-size: calc(var(--u) * 4.2);
-        font-weight: 500;
-        margin: 0 0 var(--u);
-        color: var(--muted)
+    .panel[hidden] { display: none }
+    @keyframes fade { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
+
+    input, select, button { font-family: inherit; color: inherit }
+    :is(input, select, button):focus-visible { outline: 3px solid var(--focus); outline-offset: 2px }
+    .fl {
+        width: 100%; min-width: 0; background: var(--panel); border: 1px solid var(--line);
+        border-radius: calc(var(--u) * 2.5); padding: calc(var(--u) * 2.4) calc(var(--u) * 2.8);
+        font-size: calc(var(--u) * 4.6); font-weight: 600;
     }
-    h1 {
-        font-size: calc(var(--u) * 6.4);
-        line-height: 1.15;
-        font-weight: 800;
-        margin: 0;
-        letter-spacing: -.01em
-    }
-    .card {
-        background: var(--panel);
-        border: 1px solid var(--line);
-        border-radius: calc(var(--u) * 3.5);
-        padding: calc(var(--u) * 4)
-    }
-    label {
-        display: block;
-        font-size: calc(var(--u) * 3.6);
-        font-weight: 600;
-        margin-bottom: calc(var(--u) * 1.5)
-    }
-    .row {
-        display: flex;
-        gap: calc(var(--u) * 2.5)
-    }
-    input, select, button {
-        font: inherit;
-        color: inherit
-    }
-    #amount {
-        flex: 2 1 0;
-        min-width: 0;
-        padding: calc(var(--u) * 3);
-        font-size: calc(var(--u) * 6);
-        font-weight: 600;
-        border: 1px solid var(--line);
-        border-radius: calc(var(--u) * 2.5);
-        background: transparent
-    }
-    #base {
-        flex: 1 1 0;
-        min-width: 0;
-        padding: calc(var(--u) * 3);
-        font-size: calc(var(--u) * 4.6);
-        font-weight: 600;
-        border: 1px solid var(--line);
-        border-radius: calc(var(--u) * 2.5);
-        background: var(--panel)
-    }
-    :is(#amount, #base, #reset):focus-visible {
-        outline: 3px solid var(--focus);
-        outline-offset: 2px
-    }
-    .results {
-        margin-top: calc(var(--u) * 3.5);
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: calc(var(--u) * 2)
-    }
+    .row { display: flex; gap: calc(var(--u) * 2.5) }
+    #amount { flex: 2 1 0; font-size: calc(var(--u) * 5.6) }
+    #base { flex: 1 1 0; font-size: calc(var(--u) * 4.4) }
+
+    .rows { margin-top: calc(var(--u) * 2) }
     .res {
-        min-width: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: calc(var(--u) * 3);
-        padding: calc(var(--u) * 3) calc(var(--u) * 3.5);
-        border-radius: calc(var(--u) * 2.5);
-        border: 1px solid var(--line)
+        display: flex; justify-content: space-between; align-items: baseline; gap: calc(var(--u) * 3);
+        padding: calc(var(--u) * 1.8) calc(var(--u) * 2.4); border-bottom: 1px solid var(--line);
+        font-size: calc(var(--u) * 3.8);
     }
-    .res.is-base {
-        background: var(--base-bg);
-        color: var(--base-ink);
-        border-color: var(--base-line)
-    }
-    .res .code {
-        font-weight: 800;
-        font-size: calc(var(--u) * 4.2);
-        white-space: nowrap
-    }
-    .res .tag {
-        font-size: max(10px, calc(var(--u) * 3.2));
-        opacity: .75;
-        margin-left: calc(var(--u) * 2);
-        font-weight: 400
-    }
-    .res .val {
-        flex: 1;
-        min-width: 0;
-        font-size: calc(var(--u) * 6.4);
-        font-weight: 600;
-        font-variant-numeric: tabular-nums;
-        text-align: right;
-        white-space: nowrap;
-        overflow: hidden
-    }
-    .actions {
-        margin-top: calc(var(--u) * 3.5);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: calc(var(--u) * 3)
-    }
+    .res.is-base { background: var(--base-bg); color: var(--base-ink); border-radius: calc(var(--u) * 2.6); border-bottom-color: transparent }
+    .code { font-weight: 800; white-space: nowrap }
+    .tag { font-size: max(10px, calc(var(--u) * 3)); opacity: .7; margin-left: calc(var(--u) * 1.5); font-weight: 400 }
+    .val { flex: 1; min-width: 0; text-align: right; white-space: nowrap; overflow: hidden; font-size: calc(var(--u) * 4.4); font-weight: 600; font-variant-numeric: tabular-nums }
+    .actions { margin-top: calc(var(--u) * 2.5); display: flex; justify-content: space-between; align-items: center; gap: calc(var(--u) * 3) }
     #reset {
-        flex: none;
-        padding: calc(var(--u) * 2.8) calc(var(--u) * 5.5);
-        border-radius: calc(var(--u) * 2.5);
-        border: 0;
-        cursor: pointer;
-        font-size: calc(var(--u) * 4.2);
-        font-weight: 600;
-        background: var(--accent);
-        color: var(--accent-ink)
+        flex: none; border: 0; cursor: pointer; border-radius: 999px; background: var(--accent); color: var(--accent-ink);
+        padding: calc(var(--u) * 2) calc(var(--u) * 5); font-size: calc(var(--u) * 3.8); font-weight: 600;
     }
-    #reset:active {
-        transform: translateY(1px)
-    }
+    #reset:active { transform: translateY(1px) }
     .status {
-        flex: 1;
-        min-width: 0;
-        text-align: right;
-        font-size: max(9px, calc(var(--u) * 3.1));
-        line-height: 1.25;
-        color: var(--muted);
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden
+        flex: 1; min-width: 0; text-align: right; color: var(--muted);
+        font-size: max(9px, calc(var(--u) * 3)); line-height: 1.25;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .status.warn {
-        color: var(--warn)
+    .status.warn { color: var(--warn) }
+
+    /* Calculator */
+    .dp { text-align: right; padding: 0 var(--u) calc(var(--u) * 2.5) }
+    .ex { height: calc(var(--u) * 4.6); font-size: calc(var(--u) * 3.4); color: var(--muted); white-space: nowrap; overflow: hidden }
+    .big { font-size: calc(var(--u) * 9.5); font-weight: 600; line-height: 1.15; white-space: nowrap; overflow: hidden; font-variant-numeric: tabular-nums }
+    .kp { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(var(--u) * 2) }
+    .k {
+        height: calc(var(--u) * 11); padding: 0; border-radius: 999px; cursor: pointer;
+        border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+        font-size: calc(var(--u) * 5); font-weight: 600;
     }
+    .k.fn { background: var(--line) }
+    .k.op { background: var(--accent); border-color: var(--accent); color: var(--accent-ink) }
+    .k:active { transform: scale(.96) }
+
+    /* Mortgage */
+    .cr { display: flex; justify-content: space-between; align-items: center; gap: calc(var(--u) * 3); margin-bottom: calc(var(--u) * 2.5) }
+    .cr label { font-size: calc(var(--u) * 3.6); color: var(--muted) }
+    #mcur { width: calc(var(--u) * 32); font-size: calc(var(--u) * 4.2); padding: calc(var(--u) * 1.8) calc(var(--u) * 2.4) }
+    .fg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--u) * 2); margin-bottom: calc(var(--u) * 2.5) }
+    .lb2 { font-size: max(10px, calc(var(--u) * 3)); color: var(--muted); margin-bottom: calc(var(--u) * .8); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+    .fg .fl { font-size: calc(var(--u) * 4.4) }
+    .hero {
+        background: var(--base-bg); color: var(--base-ink); border: 1px solid var(--base-line);
+        border-radius: calc(var(--u) * 3.5); padding: calc(var(--u) * 2.4) calc(var(--u) * 3); margin-bottom: calc(var(--u) * 1.5);
+    }
+    .hero .tc { font-size: calc(var(--u) * 3.2); font-weight: 600; opacity: .75 }
+    .hv { font-size: calc(var(--u) * 7); font-weight: 600; line-height: 1.15; white-space: nowrap; overflow: hidden; font-variant-numeric: tabular-nums }
+    .m { display: flex; justify-content: space-between; gap: calc(var(--u) * 3); padding: calc(var(--u) * 1.8) var(--u); border-bottom: 1px solid var(--line); font-size: calc(var(--u) * 3.8) }
+    .m span:first-child { color: var(--muted) }
+    .m span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; min-width: 0; overflow: hidden; white-space: nowrap }
+
     footer {
-        flex: none;
-        width: 100%;
-        padding: calc(var(--u) * 3) calc(var(--u) * 4);
-        padding-bottom: calc(var(--u) * 3 + env(safe-area-inset-bottom, 0px));
-        text-align: center;
-        font-size: max(10px, calc(var(--u) * 3.2));
-        color: var(--muted);
-        border-top: 1px solid var(--line)
+        flex: none; text-align: center; color: var(--muted); font-size: max(10px, calc(var(--u) * 3));
+        padding: calc(var(--u) * 1.5) calc(var(--u) * 4) calc(var(--u) * 18 + env(safe-area-inset-bottom, 0px));
     }
+
+    /* Glass bottom toggle with sliding highlight */
+    .nav {
+        position: absolute; left: calc(var(--u) * 5); right: calc(var(--u) * 5);
+        bottom: calc(var(--u) * 3 + env(safe-area-inset-bottom, 0px));
+        height: calc(var(--u) * 13.5); border-radius: 999px; display: flex; padding: var(--u);
+        background: var(--gbg); border: 1px solid var(--gbd); box-shadow: var(--gsh);
+        -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%);
+    }
+    .ind {
+        position: absolute; top: var(--u); bottom: var(--u); left: var(--u);
+        width: calc((100% - var(--u) * 2) / 3); border-radius: 999px;
+        background: var(--gind); box-shadow: var(--gish);
+        transition: transform .38s cubic-bezier(.3, 1.25, .4, 1);
+    }
+    .tab {
+        position: relative; z-index: 1; flex: 1; min-width: 0; display: flex; gap: calc(var(--u) * 1.5);
+        justify-content: center; align-items: center; background: none; border: 0; cursor: pointer;
+        font-size: max(11px, calc(var(--u) * 3.5)); font-weight: 600; color: var(--ink); opacity: .7;
+        transition: opacity .25s, color .25s; border-radius: 999px;
+    }
+    .tab.on { opacity: 1; color: var(--gink) }
+    .tab svg { width: calc(var(--u) * 4.6); height: calc(var(--u) * 4.6); flex: none }
     </style>
 </head>
 <body>
     <div class="app">
-        <main>
-            <header class="hero">
-                <h5>Hi there!</h5>
-                <h1>Welcome to FX Convert</h1>
-            </header>
+        <header class="hdr">
+            <h5>Hi there!</h5>
+            <h1>Welcome to FX Convert</h1>
+            <div class="hh"><i></i><span id="heading">Currency converter</span></div>
+        </header>
 
-            <div class="card">
-                <label for="amount">Amount</label>
+        <div class="panels">
+            <section class="panel" id="p0" role="tabpanel" aria-label="Currency converter">
                 <div class="row">
-                    <input id="amount" type="text" inputmode="decimal" autocomplete="off" value="0" aria-describedby="status">
-                    <select id="base" aria-label="Base currency">
-                        <option value="USD">USD</option>
-                        <option value="AED">AED</option>
-                        <option value="INR">INR</option>
-                        <option value="GEL">GEL</option>
+                    <input id="amount" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="18" value="0" aria-label="Amount">
+                    <select id="base" class="fl" aria-label="Base currency">
+                        <option>USD</option><option>AED</option><option>INR</option><option>GEL</option><option>GBP</option><option>EUR</option><option>SGD</option>
                     </select>
                 </div>
-
-                <div class="results" id="results" aria-live="polite"></div>
-
+                <div class="rows" id="rows" aria-live="polite"></div>
                 <div class="actions">
                     <button id="reset" type="button">Reset</button>
                     <span class="status" id="status">Loading rates…</span>
                 </div>
-            </div>
-        </main>
+            </section>
+
+            <section class="panel" id="p1" role="tabpanel" aria-label="Calculator" hidden>
+                <div class="dp">
+                    <div class="ex" id="calcExpr"></div>
+                    <div class="big" id="calcBig">0</div>
+                </div>
+                <div class="kp" id="keys"></div>
+            </section>
+
+            <section class="panel" id="p2" role="tabpanel" aria-label="Mortgage calculator" hidden>
+                <div class="cr">
+                    <label for="mcur">Currency</label>
+                    <select id="mcur" class="fl" aria-label="Mortgage currency">
+                        <option>USD</option><option>AED</option><option>INR</option><option>GEL</option><option>GBP</option><option>EUR</option><option>SGD</option>
+                    </select>
+                </div>
+                <div class="fg">
+                    <div><div class="lb2" id="lbPrice">Home price</div><input id="mPrice" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="16" value="500,000" aria-labelledby="lbPrice"></div>
+                    <div><div class="lb2" id="lbDown">Down payment</div><input id="mDown" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="16" value="100,000" aria-labelledby="lbDown"></div>
+                    <div><div class="lb2" id="lbRate">Interest rate (%)</div><input id="mRate" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="6" value="5.5" aria-labelledby="lbRate"></div>
+                    <div><div class="lb2" id="lbTerm">Term (years)</div><input id="mTerm" class="fl" type="text" inputmode="numeric" autocomplete="off" maxlength="2" value="25" aria-labelledby="lbTerm"></div>
+                </div>
+                <div class="hero"><div class="tc" id="mTitle">Monthly payment</div><div class="hv" id="mPay">0.00</div></div>
+                <div class="m"><span>Loan amount</span><span id="mLoan">0.00</span></div>
+                <div class="m"><span>Total interest</span><span id="mInt">0.00</span></div>
+                <div class="m"><span>Total paid</span><span id="mTot">0.00</span></div>
+            </section>
+        </div>
 
         <footer>Designed and maintained by Charandeep Singh</footer>
+
+        <nav class="nav" role="tablist" aria-label="Sections">
+            <div class="ind" id="ind"></div>
+            <button class="tab on" role="tab" aria-selected="true" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h12M15 3l4 4-4 4M17 17H5M9 13l-4 4 4 4"/></svg>Convert
+            </button>
+            <button class="tab" role="tab" aria-selected="false" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"/></svg>Calculator
+            </button>
+            <button class="tab" role="tab" aria-selected="false" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/></svg>Mortgage
+            </button>
+        </nav>
     </div>
 
     <script>
     (function() {
-        var CURRENCIES = ["USD", "AED", "INR", "GEL"];
+        var CURRENCIES = ["USD", "AED", "INR", "GEL", "GBP", "EUR", "SGD"];
         var API = "https://open.er-api.com/v6/latest/USD";
-        var CACHE_KEY = "fx-rates-v2";
-        // Built-in backup, used only if the API and the saved copy are both unavailable.
-        var BACKUP = {
-            USD: 1,
-            AED: 3.6725,
-            INR: 88,
-            GEL: 2.7
-        };
-
+        var CACHE_KEY = "fx-rates-v3";
+        // Approximate built-in rates, used only if live and saved rates are both unavailable.
+        var BACKUP = { USD: 1, AED: 3.6725, INR: 88, GEL: 2.7, GBP: 0.75, EUR: 0.86, SGD: 1.29 };
+        var HEADINGS = ["Currency converter", "Calculator", "Mortgage calculator"];
         var rates = BACKUP;
-        var stamp = null;
 
-        var amountEl = document.getElementById("amount");
-        var baseEl = document.getElementById("base");
-        var resultsEl = document.getElementById("results");
-        var statusEl = document.getElementById("status");
-        var resetEl = document.getElementById("reset");
+        function $(id) { return document.getElementById(id); }
+        var fmt2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-        var fmt = new Intl.NumberFormat("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-
-        function parseAmount(text) {
-            var n = parseFloat(String(text).replace(/,/g, ""));
+        function parseNum(t) {
+            var n = parseFloat(String(t).replace(/,/g, ""));
             return isFinite(n) && n > 0 ? n : 0;
         }
 
-        function render() {
-            var amount = parseAmount(amountEl.value);
-            var base = baseEl.value;
-            resultsEl.innerHTML = "";
+        /* Keep only valid characters while typing; optionally add thousands separators. */
+        function cleanField(el, decimals, commas) {
+            var raw = el.value;
+            var caret = el.selectionStart == null ? raw.length : el.selectionStart;
+            var bad = decimals ? /[^0-9.]/g : /[^0-9]/g;
+            var before = raw.slice(0, caret).replace(bad, "").length;
+            var v = raw.replace(bad, "");
+            var dot = v.indexOf(".");
+            if (dot !== -1) v = v.slice(0, dot + 1) + v.slice(dot + 1).replace(/\./g, "");
+            var parts = v.split(".");
+            var ip = parts[0].replace(/^0+(?=\d)/, "");
+            if (commas) ip = ip.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            el.value = parts.length > 1 ? ip + "." + parts[1] : ip;
+            var n = 0, i = 0;
+            while (i < el.value.length && n < before) { if (/[0-9.]/.test(el.value[i])) n++; i++; }
+            try { el.setSelectionRange(i, i); } catch (e) {}
+        }
+
+        function fit(el, min) {
+            el.style.fontSize = "";
+            var fs = parseFloat(getComputedStyle(el).fontSize);
+            while (el.scrollWidth > el.clientWidth && fs > min) { fs -= 1; el.style.fontSize = fs + "px"; }
+        }
+        function fitAll() {
+            var i, els = document.querySelectorAll(".val");
+            for (i = 0; i < els.length; i++) fit(els[i], 9);
+            fit($("calcBig"), 16);
+            fit($("mPay"), 12);
+        }
+
+        /* ---------- Currency converter ---------- */
+        var amountEl = $("amount"), baseEl = $("base"), rowsEl = $("rows"), statusEl = $("status");
+        var mcurEl = $("mcur"), mcurTouched = false;
+
+        function renderConvert() {
+            var amount = parseNum(amountEl.value), base = baseEl.value;
+            rowsEl.innerHTML = "";
             CURRENCIES.forEach(function(code) {
                 var value = amount ? amount / rates[base] * rates[code] : 0;
                 var row = document.createElement("div");
@@ -335,109 +334,197 @@
                 }
                 var right = document.createElement("span");
                 right.className = "val";
-                right.textContent = value ? fmt.format(value) : "0";
+                right.textContent = value ? fmt2.format(value) : "0";
                 row.appendChild(left);
                 row.appendChild(right);
-                resultsEl.appendChild(row);
+                rowsEl.appendChild(row);
             });
-            fitValues();
+            fitAll();
         }
-
-        function fitValues() {
-            var els = resultsEl.querySelectorAll(".val");
-            for (var i = 0; i < els.length; i++) {
-                var el = els[i];
-                el.style.fontSize = "";
-                var fs = parseFloat(getComputedStyle(el).fontSize);
-                while (el.scrollWidth > el.clientWidth && fs > 9) {
-                    fs -= 1;
-                    el.style.fontSize = fs + "px";
-                }
-            }
-        }
-        window.addEventListener("resize", fitValues);
 
         function setStatus(text, warn) {
             statusEl.textContent = text;
             statusEl.className = "status" + (warn ? " warn" : "");
         }
-
-        function save(r, t) {
-            try {
-                localStorage.setItem(CACHE_KEY, JSON.stringify({
-                    rates: r,
-                    time: t
-                }));
-            } catch (e) {}
-        }
-        function load() {
-            try {
-                return JSON.parse(localStorage.getItem(CACHE_KEY));
-            } catch (e) {
-                return null;
-            }
-        }
+        function save(r, t) { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ rates: r, time: t })); } catch (e) {} }
+        function load() { try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) { return null; } }
 
         function loadRates() {
             fetch(API)
-            .then(function(res) {
-                if (!res.ok)
-                    throw new Error("HTTP " + res.status);
-                return res.json();
-            })
-            .then(function(data) {
-                if (data.result !== "success")
-                    throw new Error("Bad response");
-                var r = {};
-                CURRENCIES.forEach(function(c) {
-                    if (!data.rates || !data.rates[c])
-                        throw new Error("Missing " + c);
-                    r[c] = data.rates[c];
+                .then(function(res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
+                .then(function(data) {
+                    if (data.result !== "success") throw new Error("Bad response");
+                    var r = {};
+                    CURRENCIES.forEach(function(c) {
+                        if (!data.rates || !data.rates[c]) throw new Error("Missing " + c);
+                        r[c] = data.rates[c];
+                    });
+                    rates = r;
+                    var stamp = data.time_last_update_utc || new Date().toUTCString();
+                    save(r, stamp);
+                    setStatus("Rates updated: " + stamp.replace(/ \+0000$/, " UTC"));
+                    renderConvert();
+                })
+                .catch(function() {
+                    var saved = load();
+                    if (saved && saved.rates) {
+                        rates = saved.rates;
+                        setStatus("Live rates unavailable. Using saved rates from " + saved.time + ", which may be outdated.", true);
+                    } else {
+                        rates = BACKUP;
+                        setStatus("Live rates unavailable. Using approximate built-in rates, which may be outdated.", true);
+                    }
+                    renderConvert();
                 });
-                rates = r;
-                stamp = data.time_last_update_utc || new Date().toUTCString();
-                save(r, stamp);
-                setStatus("Rates updated: " + stamp.replace(/ \+0000$/, " UTC"));
-                render();
-            })
-            .catch(function() {
-                var saved = load();
-                if (saved && saved.rates) {
-                    rates = saved.rates;
-                    setStatus("Live rates unavailable. Using saved rates from " + saved.time + ", which may be outdated.", true);
-                } else {
-                    rates = BACKUP;
-                    setStatus("Live rates unavailable. Using approximate built-in rates, which may be outdated.", true);
-                }
-                render();
-            });
         }
 
-        // Keep only digits, commas and one decimal point.
-        amountEl.addEventListener("input", function() {
-            var v = amountEl.value.replace(/[^0-9.,]/g, "");
-            var i = v.indexOf(".");
-            if (i !== -1)
-                v = v.slice(0, i + 1) + v.slice(i + 1).replace(/\./g, "");
-            amountEl.value = v;
-            render();
+        amountEl.addEventListener("input", function() { cleanField(amountEl, true, true); renderConvert(); });
+        amountEl.addEventListener("focus", function() { if (amountEl.value === "0") amountEl.select(); });
+        amountEl.addEventListener("blur", function() { if (amountEl.value.trim() === "") { amountEl.value = "0"; renderConvert(); } });
+        baseEl.addEventListener("change", function() {
+            if (!mcurTouched) { mcurEl.value = baseEl.value; renderMort(); }
+            renderConvert();
         });
-        amountEl.addEventListener("focus", function() {
-            if (amountEl.value === "0")
-                amountEl.select();
-        });
-        amountEl.addEventListener("blur", function() {
-            if (amountEl.value.trim() === "")
-                amountEl.value = "0";
-        });
-        baseEl.addEventListener("change", render);
-        resetEl.addEventListener("click", function() {
-            amountEl.value = "0";
-            render();
-            amountEl.focus();
+        $("reset").addEventListener("click", function() { amountEl.value = "0"; renderConvert(); amountEl.focus(); });
+
+        /* ---------- Calculator ---------- */
+        var KEYS = [["AC", "±", "%", "÷"], ["7", "8", "9", "×"], ["4", "5", "6", "−"], ["1", "2", "3", "+"], ["0", ".", "⌫", "="]];
+        var keysEl = $("keys");
+        KEYS.forEach(function(r, ri) {
+            r.forEach(function(k, ci) {
+                var b = document.createElement("button");
+                b.type = "button";
+                b.className = "k" + (ci === 3 ? " op" : ri === 0 ? " fn" : "");
+                b.textContent = k;
+                b.setAttribute("data-k", k);
+                if (k === "⌫") b.setAttribute("aria-label", "Delete");
+                keysEl.appendChild(b);
+            });
         });
 
-        render();
+        var cur = "0", prev = null, op = null, fresh = false, eq = false, expr = "";
+        function disp(s) {
+            if (s === "Error" || /e/.test(s)) return s;
+            var neg = s.charAt(0) === "-", t = neg ? s.slice(1) : s, p = t.split(".");
+            p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return (neg ? "-" : "") + p.join(".");
+        }
+        function str(n) { return isFinite(n) ? String(parseFloat(n.toPrecision(12))) : "Error"; }
+        function compute(a, b, o) {
+            if (o === "+") return a + b;
+            if (o === "−") return a - b;
+            if (o === "×") return a * b;
+            return b === 0 ? NaN : a / b;
+        }
+        function calcReset() { cur = "0"; prev = null; op = null; fresh = false; eq = false; expr = ""; }
+        function calcUpdate() {
+            $("calcExpr").textContent = expr;
+            $("calcBig").textContent = disp(cur);
+            fit($("calcBig"), 16);
+        }
+        function press(k) {
+            if (cur === "Error" && k !== "AC") calcReset();
+            if (/^[0-9]$/.test(k)) {
+                if (eq) calcReset();
+                if (fresh) { cur = "0"; fresh = false; }
+                if (cur.replace(/[-.]/g, "").length >= 15) return;
+                cur = cur === "0" ? k : cur === "-0" ? "-" + k : cur + k;
+            } else if (k === ".") {
+                if (eq) calcReset();
+                if (fresh) { cur = "0"; fresh = false; }
+                if (cur.indexOf(".") < 0) cur += ".";
+            } else if (k === "AC") {
+                calcReset();
+            } else if (k === "±") {
+                if (cur !== "0") cur = cur.charAt(0) === "-" ? cur.slice(1) : "-" + cur;
+            } else if (k === "%") {
+                var v = parseFloat(cur);
+                cur = str(op !== null && prev !== null ? parseFloat(prev) * v / 100 : v / 100);
+                fresh = false;
+            } else if (k === "⌫") {
+                if (eq || fresh) return;
+                cur = cur.length > 1 && !(cur.length === 2 && cur.charAt(0) === "-") ? cur.slice(0, -1) : "0";
+            } else if (k === "=") {
+                if (op !== null && prev !== null) {
+                    var res = compute(parseFloat(prev), parseFloat(cur), op);
+                    expr = disp(prev) + " " + op + " " + disp(cur) + " =";
+                    cur = str(res); op = null; prev = null; eq = true; fresh = false;
+                }
+            } else {
+                if (op !== null && !fresh) cur = str(compute(parseFloat(prev), parseFloat(cur), op));
+                if (cur === "Error") { op = null; prev = null; expr = ""; calcUpdate(); return; }
+                prev = cur; op = k; fresh = true; eq = false;
+                expr = disp(prev) + " " + op;
+            }
+            calcUpdate();
+        }
+        keysEl.addEventListener("click", function(e) {
+            var b = e.target.closest("button");
+            if (b) press(b.getAttribute("data-k"));
+        });
+        document.addEventListener("keydown", function(e) {
+            if (idx !== 1 || e.ctrlKey || e.metaKey || e.altKey) return;
+            var t = e.target.tagName;
+            if (t === "INPUT" || t === "SELECT") return;
+            var map = { "*": "×", "/": "÷", "-": "−", "+": "+", ".": ".", "%": "%", "Enter": "=", "=": "=", "Backspace": "⌫", "Escape": "AC" };
+            var k = /^[0-9]$/.test(e.key) ? e.key : map[e.key];
+            if (k) { e.preventDefault(); press(k); }
+        });
+
+        /* ---------- Mortgage ---------- */
+        var mPrice = $("mPrice"), mDown = $("mDown"), mRate = $("mRate"), mTerm = $("mTerm");
+        function renderMort() {
+            var code = mcurEl.value;
+            var price = parseNum(mPrice.value), down = parseNum(mDown.value);
+            var rate = parseNum(mRate.value), years = parseNum(mTerm.value);
+            var loan = Math.max(price - down, 0), n = Math.round(years * 12), pay = 0;
+            if (loan > 0 && n > 0) {
+                var r = rate / 100 / 12;
+                pay = r > 0 ? loan * r / (1 - Math.pow(1 + r, -n)) : loan / n;
+            }
+            var total = pay * n, interest = pay ? total - loan : 0;
+            var pct = price ? Math.round(down / price * 1000) / 10 : 0;
+            $("lbPrice").textContent = "Home price (" + code + ")";
+            $("lbDown").textContent = "Down payment (" + pct + "%)";
+            $("mTitle").textContent = "Monthly payment · " + code;
+            $("mPay").textContent = fmt2.format(pay);
+            $("mLoan").textContent = fmt2.format(loan);
+            $("mInt").textContent = fmt2.format(interest);
+            $("mTot").textContent = fmt2.format(pay ? total : 0);
+            fit($("mPay"), 12);
+        }
+        [mPrice, mDown].forEach(function(el) { el.addEventListener("input", function() { cleanField(el, true, true); renderMort(); }); });
+        mRate.addEventListener("input", function() { cleanField(mRate, true, false); renderMort(); });
+        mTerm.addEventListener("input", function() { cleanField(mTerm, false, false); renderMort(); });
+        mcurEl.addEventListener("change", function() { mcurTouched = true; renderMort(); });
+
+        /* ---------- Tabs ---------- */
+        var tabs = document.querySelectorAll(".tab"), idx = 0;
+        function show(i) {
+            idx = i;
+            $("ind").style.transform = "translateX(" + (i * 100) + "%)";
+            for (var j = 0; j < tabs.length; j++) {
+                tabs[j].classList.toggle("on", j === i);
+                tabs[j].setAttribute("aria-selected", j === i ? "true" : "false");
+                $("p" + j).hidden = j !== i;
+            }
+            $("heading").textContent = HEADINGS[i];
+            fitAll();
+        }
+        for (var t = 0; t < tabs.length; t++) {
+            (function(i) { tabs[i].addEventListener("click", function() { show(i); }); })(t);
+        }
+
+        /* A focused field can nudge the fixed layout on some phones; put it back. */
+        document.addEventListener("focusout", function() {
+            document.querySelector(".app").scrollTop = 0;
+            window.scrollTo(0, 0);
+        });
+        window.addEventListener("resize", fitAll);
+
+        renderConvert();
+        renderMort();
+        calcUpdate();
         loadRates();
     })();
     </script>
