@@ -1,556 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>FX Convert</title>
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="data:image/png;base64,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">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-    <style>
-    :root {
-        color-scheme: light dark;
-        --bg: #ffffff;
-        --panel: #ffffff;
-        --ink: #0b0b0b;
-        --muted: #6f6f66;
-        --line: #e6e6de;
-        --accent: #dac520;
-        --accent-ink: #0b0b0b;
-        --focus: #0b0b0b;
-        --warn: #8a4b00;
-        --base-bg: #fbf6cc;
-        --base-ink: #0b0b0b;
-        --base-line: #dac520;
-        --gbg: rgba(255, 255, 255, .55);
-        --gbd: rgba(255, 255, 255, .85);
-        --gsh: 0 8px 24px rgba(0, 0, 0, .14);
-        --gind: rgba(255, 255, 255, .95);
-        --gish: 0 2px 8px rgba(0, 0, 0, .12);
-        --gink: #0b0b0b;
-    }
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --bg: #0b0b0b;
-            --panel: #151515;
-            --ink: #f5f5f0;
-            --muted: #9a9a8e;
-            --line: #2a2a26;
-            --focus: #dac520;
-            --warn: #e5b567;
-            --base-bg: #dac520;
-            --base-ink: #0b0b0b;
-            --gbg: rgba(255, 255, 255, .10);
-            --gbd: rgba(255, 255, 255, .18);
-            --gsh: 0 8px 24px rgba(0, 0, 0, .5);
-            --gind: rgba(255, 255, 255, .22);
-            --gish: 0 2px 8px rgba(0, 0, 0, .3);
-            --gink: #ffffff;
-        }
-    }
-
-    /* One-screen layout: every size below scales from --u, so the page fits any screen with no scrolling.
-       Extra height on tall phones is shared between the sections (spread-out layout). */
-    :root {
-        --w: min(100vw, 420px);
-        --h: 100vh;
-        --u: min(calc(var(--w) / 100), calc(var(--h) * .0048));
-    }
-    @media (min-width: 600px) { :root { --h: min(calc(100vh - 48px), 900px) } }
-    @supports (height: 100dvh) {
-        :root { --h: 100dvh }
-        @media (min-width: 600px) { :root { --h: min(calc(100dvh - 48px), 900px) } }
-    }
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent }
-    html, body { height: 100%; margin: 0; overflow: hidden; overscroll-behavior: none; background: var(--bg) }
-    body {
-        color: var(--ink);
-        font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-        display: flex; align-items: center; justify-content: center;
-        touch-action: manipulation; -webkit-text-size-adjust: 100%;
-    }
-    .app {
-        position: relative; width: var(--w); height: var(--h);
-        display: flex; flex-direction: column; overflow: hidden;
-        background:
-            radial-gradient(90% 26% at 18% 100%, rgba(218, 197, 32, .55), transparent 70%),
-            radial-gradient(70% 20% at 92% 97%, rgba(218, 197, 32, .35), transparent 70%),
-            var(--bg);
-    }
-    @media (min-width: 600px) {
-        .app { border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 10px 40px rgba(0, 0, 0, .12) }
-    }
-
-    /* Fixed header: same position on all three screens */
-    .hdr { flex: none; padding: calc(var(--u) * 5) calc(var(--u) * 5) 0 }
-    h5 { font-size: calc(var(--u) * 4); font-weight: 400; margin: 0; color: var(--muted) }
-    h1 { font-size: calc(var(--u) * 6.2); line-height: 1.2; font-weight: 800; margin: 0; letter-spacing: -.01em }
-    .hh {
-        display: flex; align-items: center; gap: calc(var(--u) * 2);
-        margin-top: calc(var(--u) * 2); height: calc(var(--u) * 5);
-        font-size: calc(var(--u) * 4); font-weight: 600;
-    }
-    .hh i { display: block; width: var(--u); height: calc(var(--u) * 4.2); border-radius: calc(var(--u) * .5); background: var(--accent) }
-
-    .panels { flex: 1; min-height: 0; position: relative }
-    .panel {
-        position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between;
-        gap: calc(var(--u) * 2);
-        padding: calc(var(--u) * 14.5) calc(var(--u) * 5) calc(var(--u) * 3);
-        animation: fade .25s ease;
-    }
-    .panel[hidden] { display: none }
-    @keyframes fade { from { opacity: 0; transform: translateY(4px) } to { opacity: 1; transform: none } }
-
-    input, select, button { font-family: inherit; color: inherit }
-    :is(input, select, button):focus-visible { outline: 3px solid var(--focus); outline-offset: 2px }
-    .fl {
-        width: 100%; min-width: 0; background: var(--panel); border: 1px solid var(--line);
-        border-radius: calc(var(--u) * 3); padding: calc(var(--u) * 4) calc(var(--u) * 3.4);
-        font-size: calc(var(--u) * 5.4); font-weight: 600;
-    }
-    .row { display: flex; gap: calc(var(--u) * 2.5) }
-    #amount { flex: 2 1 0; font-size: calc(var(--u) * 6.6) }
-    #base { flex: 1 1 0; font-size: calc(var(--u) * 5.2) }
-
-    .res {
-        display: flex; justify-content: space-between; align-items: baseline; gap: calc(var(--u) * 3);
-        padding: calc(var(--u) * 3) calc(var(--u) * 2.8); border-bottom: 1px solid var(--line);
-        font-size: calc(var(--u) * 5);
-    }
-    .res.is-base { background: var(--base-bg); color: var(--base-ink); border-radius: calc(var(--u) * 3); border-bottom-color: transparent }
-    .code { font-weight: 800; white-space: nowrap }
-    .tag { font-size: max(10px, calc(var(--u) * 3.4)); opacity: .7; margin-left: calc(var(--u) * 1.5); font-weight: 400 }
-    .val { flex: 1; min-width: 0; text-align: right; white-space: nowrap; overflow: hidden; font-size: calc(var(--u) * 5.6); font-weight: 600; font-variant-numeric: tabular-nums }
-    .actions { display: flex; justify-content: space-between; align-items: center; gap: calc(var(--u) * 3) }
-    #reset {
-        flex: none; border: 0; cursor: pointer; border-radius: 999px; background: var(--accent); color: var(--accent-ink);
-        padding: calc(var(--u) * 2.8) calc(var(--u) * 6.5); font-size: calc(var(--u) * 4.6); font-weight: 600;
-    }
-    #reset:active { transform: translateY(1px) }
-    .status {
-        flex: 1; min-width: 0; text-align: right; color: var(--muted);
-        font-size: max(9px, calc(var(--u) * 3.4)); line-height: 1.25;
-        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .status.warn { color: var(--warn) }
-
-    /* Calculator: big round keys */
-    .dp { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: flex-end; text-align: right; padding: 0 var(--u) }
-    .ex { height: calc(var(--u) * 4.8); font-size: calc(var(--u) * 4); color: var(--muted); white-space: nowrap; overflow: hidden }
-    .big { font-size: calc(var(--u) * 14); font-weight: 600; line-height: 1.1; white-space: nowrap; overflow: hidden; font-variant-numeric: tabular-nums }
-    .kp { flex: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(var(--u) * 3); width: min(100%, calc(var(--u) * 90)); margin-inline: auto }
-    .k {
-        width: 100%; aspect-ratio: 1 / 1; padding: 0; border-radius: 50%; cursor: pointer;
-        border: 1px solid var(--line); background: var(--panel); color: var(--ink);
-        font-size: calc(var(--u) * 7.5); font-weight: 600; user-select: none;
-        transition: transform .12s, filter .12s;
-    }
-    .k.fn { background: var(--line) }
-    .k.op { background: var(--accent); border-color: var(--accent); color: var(--accent-ink) }
-    .k.p, .k:active { transform: scale(.92); filter: brightness(.85) }
-
-    /* Mortgage */
-    .cr { display: flex; justify-content: space-between; align-items: center; gap: calc(var(--u) * 3) }
-    .cr label { font-size: calc(var(--u) * 4); color: var(--muted) }
-    #mcur { width: calc(var(--u) * 34); font-size: calc(var(--u) * 4.8); padding: calc(var(--u) * 3.4) calc(var(--u) * 3) }
-    .fg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--u) * 3) }
-    .lb2 { font-size: max(10px, calc(var(--u) * 3.3)); color: var(--muted); margin-bottom: calc(var(--u) * 1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
-    .fg .fl { font-size: calc(var(--u) * 5.4) }
-    .hero {
-        background: var(--base-bg); color: var(--base-ink); border: 1px solid var(--base-line);
-        border-radius: calc(var(--u) * 4); padding: calc(var(--u) * 4.5) calc(var(--u) * 4);
-    }
-    .hero .tc { font-size: calc(var(--u) * 3.6); font-weight: 600; opacity: .75 }
-    .hv { font-size: calc(var(--u) * 8.7); font-weight: 600; line-height: 1.15; white-space: nowrap; overflow: hidden; font-variant-numeric: tabular-nums }
-    .m { display: flex; justify-content: space-between; gap: calc(var(--u) * 3); padding: calc(var(--u) * 3) calc(var(--u) * 1.3); border-bottom: 1px solid var(--line); font-size: calc(var(--u) * 4.7) }
-    .m span:first-child { color: var(--muted) }
-    .m span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; min-width: 0; overflow: hidden; white-space: nowrap }
-
-    footer {
-        flex: none; text-align: center; color: var(--muted); font-size: max(10px, calc(var(--u) * 3.2));
-        padding: calc(var(--u) * 1.5) calc(var(--u) * 4) calc(var(--u) * 18 + env(safe-area-inset-bottom, 0px));
-    }
-
-    /* Glass bottom toggle with sliding highlight */
-    .nav {
-        position: absolute; left: calc(var(--u) * 5); right: calc(var(--u) * 5);
-        bottom: calc(var(--u) * 3 + env(safe-area-inset-bottom, 0px));
-        height: calc(var(--u) * 13.5); border-radius: 999px; display: flex; padding: var(--u);
-        background: var(--gbg); border: 1px solid var(--gbd); box-shadow: var(--gsh);
-        -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%);
-    }
-    .ind {
-        position: absolute; top: var(--u); bottom: var(--u); left: var(--u);
-        width: calc((100% - var(--u) * 2) / 3); border-radius: 999px;
-        background: var(--gind); box-shadow: var(--gish);
-        transition: transform .38s cubic-bezier(.3, 1.25, .4, 1);
-    }
-    .tab {
-        position: relative; z-index: 1; flex: 1; min-width: 0; display: flex; gap: calc(var(--u) * 1.5);
-        justify-content: center; align-items: center; background: none; border: 0; cursor: pointer;
-        font-size: max(11px, calc(var(--u) * 3.5)); font-weight: 600; color: var(--ink); opacity: .7;
-        transition: opacity .25s, color .25s; border-radius: 999px;
-    }
-    .tab.on { opacity: 1; color: var(--gink) }
-    .tab svg { width: calc(var(--u) * 4.6); height: calc(var(--u) * 4.6); flex: none }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111214">
+<link rel="icon" href="./favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+<link rel="manifest" href="./site.webmanifest">
+<title>FX Convert — Currency, made clear</title>
+<style>
+:root{color-scheme:dark;--bg:#111214;--panel:#1b1c20;--panel2:#24252a;--line:#303137;--text:#f4f4f6;--muted:#999ba5;--accent:#9a9cff;--accent2:#c4c5ff;--green:#73d7a4;--red:#ff8e99;--radius:22px;--shadow:0 16px 44px #0005}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#252633 0,transparent 52%),var(--bg);color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}button:disabled{opacity:.4;cursor:not-allowed}.app{max-width:1160px;margin:auto;min-height:100vh;padding:28px 28px 108px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:var(--accent);color:#11121a;font-size:23px;font-weight:800;box-shadow:0 5px 24px #9a9cff30}.brand h1{font-size:19px;letter-spacing:-.04em;margin:0;font-weight:750}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.top-actions{display:flex;align-items:center;gap:10px}.pill,.icon-btn{border:1px solid var(--line);background:#1a1b1f;color:var(--text);border-radius:999px;padding:10px 14px}.icon-btn{width:42px;height:42px;padding:0;display:grid;place-items:center;font-size:18px}.status-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:7px}.layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:20px;align-items:start}.card{background:linear-gradient(145deg,#202125,#191a1e);border:1px solid #2d2e34;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);min-width:0}.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:22px}.eyebrow{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}.card h2{font-size:22px;letter-spacing:-.045em;margin:4px 0 0}.subtle{color:var(--muted);font-size:13px}.converter-card{grid-row:span 2}.amount-label{font-size:12px;color:var(--muted);margin:0 0 8px 3px}.amount-box{background:#151619;border:1px solid #303137;border-radius:18px;padding:17px 16px;display:flex;align-items:center;gap:12px;min-width:0}.amount-box:focus-within{border-color:#8889ec;box-shadow:0 0 0 3px #9a9cff12}.amount-box input{background:transparent;border:0;outline:0;color:var(--text);font-size:clamp(26px,4vw,35px);font-weight:650;letter-spacing:-.055em;width:100%;min-width:0;font-variant-numeric:tabular-nums}.amount-box input:focus-visible{outline:0}.currency-btn{display:flex;align-items:center;gap:9px;background:#2a2b31;border:1px solid #383940;border-radius:14px;color:var(--text);padding:9px 11px;white-space:nowrap;font-weight:700}.flag{font-size:24px;line-height:1}.swap-row{display:flex;align-items:center;gap:12px;margin:12px 0}.swap-line{height:1px;background:var(--line);flex:1}.swap-btn{border:1px solid #393a44;background:#292a31;color:var(--accent2);border-radius:13px;width:43px;height:43px;font-size:21px;transition:transform .2s,background .2s}.swap-btn:hover{background:#353641;transform:rotate(180deg)}.converted-box{border-color:#353641;background:linear-gradient(130deg,#202128,#191a1e)}.converted-box input{font-size:clamp(28px,4.5vw,39px)}.rate-line{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin:15px 2px 0;color:var(--muted);font-size:12px}.rate-value{color:#d9d9ff}.section-divider{height:1px;background:var(--line);margin:23px 0 18px}.section-title{font-size:13px;font-weight:700;margin-bottom:12px}.currency-list{display:flex;flex-direction:column;gap:4px}.currency-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 10px;border-radius:14px;transition:background .15s;min-width:0}.currency-row:hover{background:#292a30}.currency-left{display:flex;align-items:center;gap:11px;min-width:0}.flag-circle{width:36px;height:36px;flex:none;border-radius:50%;display:grid;place-items:center;background:#2c2d33;font-size:20px}.currency-meta{min-width:0}.currency-code{font-size:14px;font-weight:750}.currency-name{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.currency-right{text-align:right;min-width:0}.currency-amount{font-size:14px;font-weight:650;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.currency-unit{font-size:11px;color:var(--muted);margin-top:2px}.text-btn{border:0;background:transparent;color:var(--accent2);padding:7px 0;font-weight:650}.list-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px}.chart-card{min-height:345px}.chart-controls{display:flex;flex-wrap:wrap;gap:5px;background:#151619;padding:4px;border-radius:12px}.range-btn{border:0;background:transparent;color:var(--muted);padding:7px 10px;border-radius:9px;font-size:12px;font-weight:700}.range-btn.active{background:#e8e8ff;color:#171720}.chart-summary{display:flex;align-items:baseline;gap:10px;margin:2px 0 0}.chart-summary strong{font-size:30px;letter-spacing:-.05em}.chart-summary span{font-size:12px;color:var(--muted)}.chart-wrap{position:relative;margin-top:14px;height:175px}.chart-wrap canvas{width:100%;height:100%;display:block}.chart-message{color:var(--muted);font-size:12px;margin-top:8px;min-height:18px}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.stat{background:#17181b;border:1px solid #2b2c31;border-radius:14px;padding:12px;min-width:0}.stat span{display:block;color:var(--muted);font-size:11px}.stat strong{display:block;margin-top:6px;font-size:14px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.tool-card{min-height:290px}.calculator-display{background:#151619;border:1px solid var(--line);border-radius:16px;padding:17px;text-align:right;margin-bottom:14px;min-width:0}.calc-expression{height:22px;color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.calc-result{font-size:clamp(30px,4vw,42px);font-weight:650;letter-spacing:-.05em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.keypad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.key{border:1px solid #303137;background:#28292e;color:var(--text);border-radius:13px;min-height:46px;font-size:17px;font-weight:650;transition:transform .1s,background .1s}.key:active{transform:scale(.96);background:#3a3b43}.key.fn{color:var(--accent2);background:#252630}.key.op{background:#999aff;color:#15151e;border-color:transparent}.mortgage-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:12px;color:var(--muted);margin:0 0 7px 2px}.field input,.field select{width:100%;border:1px solid #34353b;background:#151619;color:var(--text);border-radius:13px;padding:13px 12px;min-width:0}.mortgage-result{margin-top:16px;background:linear-gradient(130deg,#2a2a43,#202128);border:1px solid #42425f;border-radius:17px;padding:18px}.mortgage-result .big-payment{font-size:clamp(26px,4vw,36px);letter-spacing:-.05em;font-weight:750;margin-top:4px;overflow-wrap:anywhere}.mortgage-result .subtle{font-size:12px}.mortgage-stats{margin-top:12px;display:grid;gap:0}.mortgage-stat{display:flex;justify-content:space-between;gap:12px;padding:11px 2px;border-bottom:1px solid var(--line);font-size:13px}.mortgage-stat:last-child{border:0}.mortgage-stat span:first-child{color:var(--muted)}.mortgage-stat strong{text-align:right;font-variant-numeric:tabular-nums}.bottom-nav{display:none}.panel[hidden]{display:none!important}.modal-backdrop{position:fixed;inset:0;background:#000a;z-index:20;display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(8px)}.modal-backdrop.open{display:flex}.modal{width:min(100%,490px);max-height:min(82vh,760px);display:flex;flex-direction:column;background:#1b1c20;border:1px solid #383940;border-radius:23px;box-shadow:0 30px 100px #0009;overflow:hidden}.modal-head{padding:20px 20px 12px;display:flex;justify-content:space-between;align-items:center}.modal-head h3{margin:0;font-size:19px}.search-wrap{padding:0 20px 13px}.search-wrap input{width:100%;padding:13px 15px;border-radius:13px;border:1px solid #383940;background:#121316;color:var(--text)}.modal-list{overflow:auto;padding:0 10px 12px}.currency-option{width:100%;border:0;background:transparent;color:var(--text);display:flex;align-items:center;gap:12px;padding:11px;border-radius:13px;text-align:left}.currency-option:hover,.currency-option.selected{background:#2b2c33}.currency-option .check{margin-left:auto;color:var(--accent2);font-weight:800}.modal-note{padding:0 20px 16px;color:var(--muted);font-size:11px}.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,12px);opacity:0;pointer-events:none;z-index:30;background:#292a31;border:1px solid #44454d;border-radius:12px;padding:11px 16px;font-size:13px;transition:all .2s;max-width:calc(100vw - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.error{color:var(--red)}footer{text-align:center;color:#666873;font-size:11px;margin-top:28px}
+@media(max-width:800px){.app{padding:20px 16px 105px}.layout{grid-template-columns:1fr}.converter-card{grid-row:auto}.topbar{margin-bottom:20px}.card{padding:20px}.chart-card{min-height:0}.chart-wrap{height:190px}.bottom-nav{display:flex;position:fixed;z-index:10;bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;padding:7px;background:#222328eF;border:1px solid #414249;border-radius:20px;box-shadow:0 12px 35px #0008;backdrop-filter:blur(22px);gap:4px}.nav-item{flex:1;min-width:0;border:0;background:transparent;color:#a5a6b0;border-radius:14px;padding:8px 4px 7px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;font-size:10px;font-weight:650}.nav-item .nav-icon{font-size:19px;line-height:1}.nav-item.active{background:#353641;color:#d4d5ff}.nav-item.active .nav-icon{color:var(--accent2)}footer{margin-bottom:10px}.toast{bottom:100px}}
+@media(max-width:390px){.app{padding:15px 11px 100px}.brand-mark{width:40px;height:40px}.brand h1{font-size:17px}.top-actions .pill{padding:9px 10px;font-size:12px}.card{padding:16px}.currency-btn{padding:8px}.amount-box{padding:14px 12px}.stats{gap:6px}.stat{padding:9px}.stat strong{font-size:12px}.mortgage-grid{gap:9px}}
+@media(min-width:801px){.bottom-nav{display:flex;position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:10;padding:7px;background:#222328eF;border:1px solid #414249;border-radius:18px;box-shadow:0 12px 35px #0008;backdrop-filter:blur(22px);gap:4px}.nav-item{border:0;background:transparent;color:#a5a6b0;border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:9px;font-size:12px;font-weight:650}.nav-item.active{background:#353641;color:#d4d5ff}}
+</style>
 </head>
 <body>
-    <div class="app">
-        <header class="hdr">
-            <h5>Hi there!</h5>
-            <h1>Welcome to FX Convert</h1>
-            <div class="hh"><i></i><span id="heading">Currency converter</span></div>
-        </header>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">⇄</div><div><h1>FX Convert</h1><p>Currency, made clear.</p></div></div>
+    <div class="top-actions"><div class="pill"><span class="status-dot" id="liveDot"></span><span id="rateStatus">Connecting…</span></div><button class="icon-btn" id="refreshBtn" aria-label="Refresh exchange rates" title="Refresh rates">↻</button></div>
+  </header>
 
-        <div class="panels">
-            <section class="panel" id="p0" role="tabpanel" aria-label="Currency converter">
-                <div class="row">
-                    <input id="amount" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="18" value="0" aria-label="Amount">
-                    <select id="base" class="fl" aria-label="Base currency">
-                        <option>USD</option><option>AED</option><option>INR</option><option>GEL</option><option>GBP</option><option>EUR</option><option>SGD</option>
-                    </select>
-                </div>
-                <div class="rows" id="rows" aria-live="polite"></div>
-                <div class="actions">
-                    <button id="reset" type="button">Reset</button>
-                    <span class="status" id="status">Loading rates…</span>
-                </div>
-            </section>
+  <main class="layout">
+    <section class="card converter-card panel" id="panel-convert">
+      <div class="card-head"><div><div class="eyebrow">Currency exchange</div><h2>Convert money</h2><div class="subtle">Fast, clear, and up to date.</div></div><button class="icon-btn" id="manageCurrencies" aria-label="Choose currencies" title="Choose currencies">＋</button></div>
+      <div class="amount-label">You send</div>
+      <div class="amount-box"><input id="amount" type="text" inputmode="decimal" autocomplete="off" value="1000" aria-label="Amount to convert"><button class="currency-btn" id="fromBtn" type="button" aria-label="Choose source currency"><span class="flag" id="fromFlag">🇺🇸</span><span id="fromCode">USD</span><span>⌄</span></button></div>
+      <div class="swap-row"><div class="swap-line"></div><button class="swap-btn" id="swapBtn" aria-label="Swap currencies" title="Swap currencies">⇅</button><div class="swap-line"></div></div>
+      <div class="amount-label">Recipient gets</div>
+      <div class="amount-box converted-box"><input id="convertedAmount" readonly value="3,672.50" aria-label="Converted amount"><button class="currency-btn" id="toBtn" type="button" aria-label="Choose target currency"><span class="flag" id="toFlag">🇦🇪</span><span id="toCode">AED</span><span>⌄</span></button></div>
+      <div class="rate-line"><span id="rateText" class="rate-value">1 USD = 3.6725 AED</span><span id="updatedText">Waiting for rates…</span></div>
+      <div class="section-divider"></div>
+      <div class="list-footer"><div class="section-title">Quick conversions</div><button class="text-btn" id="editListBtn">Edit list ↗</button></div>
+      <div class="currency-list" id="quickList"></div>
+      <div class="list-footer"><span class="subtle" id="listCount">Popular currencies</span><button class="text-btn" id="resetBtn">Reset amount</button></div>
+    </section>
 
-            <section class="panel" id="p1" role="tabpanel" aria-label="Calculator" hidden>
-                <div class="dp">
-                    <div class="ex" id="calcExpr"></div>
-                    <div class="big" id="calcBig">0</div>
-                </div>
-                <div class="kp" id="keys"></div>
-            </section>
+    <section class="card chart-card panel" id="panel-charts" hidden>
+      <div class="card-head"><div><div class="eyebrow">Market overview</div><h2>Exchange rate history</h2><div class="subtle" id="chartPair">USD / AED</div></div><button class="icon-btn" id="chartRefresh" aria-label="Refresh chart">↻</button></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap"><div><div class="chart-summary"><strong id="chartCurrent">—</strong><span id="chartChange">Historical rate</span></div><div class="subtle" id="chartPeriodLabel">Past 1 month</div></div><div class="chart-controls" id="ranges"><button class="range-btn" data-range="7">1W</button><button class="range-btn active" data-range="30">1M</button><button class="range-btn" data-range="90">3M</button><button class="range-btn" data-range="365">1Y</button><button class="range-btn" data-range="1825">5Y</button></div></div>
+      <div class="chart-wrap"><canvas id="historyChart" aria-label="Historical exchange rate chart"></canvas></div><div class="chart-message" id="chartMessage">Historical data is loaded when you open Charts.</div>
+      <div class="stats"><div class="stat"><span>Period high</span><strong id="statHigh">—</strong></div><div class="stat"><span>Period average</span><strong id="statAvg">—</strong></div><div class="stat"><span>Period low</span><strong id="statLow">—</strong></div></div>
+      <div class="section-divider"></div><div class="field"><label for="chartTarget">Chart target currency</label><select id="chartTarget"></select></div>
+    </section>
 
-            <section class="panel" id="p2" role="tabpanel" aria-label="Mortgage calculator" hidden>
-                <div class="cr">
-                    <label for="mcur">Currency</label>
-                    <select id="mcur" class="fl" aria-label="Mortgage currency">
-                        <option>USD</option><option>AED</option><option>INR</option><option>GEL</option><option>GBP</option><option>EUR</option><option>SGD</option>
-                    </select>
-                </div>
-                <div class="fg">
-                    <div><div class="lb2" id="lbPrice">Home price</div><input id="mPrice" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="16" value="500,000" aria-labelledby="lbPrice"></div>
-                    <div><div class="lb2" id="lbDown">Down payment</div><input id="mDown" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="16" value="100,000" aria-labelledby="lbDown"></div>
-                    <div><div class="lb2" id="lbRate">Interest rate (%)</div><input id="mRate" class="fl" type="text" inputmode="decimal" autocomplete="off" maxlength="6" value="5.5" aria-labelledby="lbRate"></div>
-                    <div><div class="lb2" id="lbTerm">Term (years)</div><input id="mTerm" class="fl" type="text" inputmode="numeric" autocomplete="off" maxlength="2" value="25" aria-labelledby="lbTerm"></div>
-                </div>
-                <div class="hero"><div class="tc" id="mTitle">Monthly payment</div><div class="hv" id="mPay">0.00</div></div>
-                <div class="stats">
-                    <div class="m"><span>Loan amount</span><span id="mLoan">0.00</span></div>
-                    <div class="m"><span>Total interest</span><span id="mInt">0.00</span></div>
-                    <div class="m"><span>Total paid</span><span id="mTot">0.00</span></div>
-                </div>
-            </section>
-        </div>
+    <section class="card tool-card panel" id="panel-calculator" hidden>
+      <div class="card-head"><div><div class="eyebrow">Everyday tool</div><h2>Calculator</h2><div class="subtle">A simple, reliable pocket calculator.</div></div><button class="icon-btn" id="calcClearTop" aria-label="Clear calculator">⌫</button></div>
+      <div class="calculator-display"><div class="calc-expression" id="calcExpr"></div><div class="calc-result" id="calcResult">0</div></div>
+      <div class="keypad" id="keypad"></div>
+    </section>
 
-        <footer>Designed and maintained by Charandeep Singh</footer>
+    <section class="card tool-card panel" id="panel-mortgage" hidden>
+      <div class="card-head"><div><div class="eyebrow">Home finance</div><h2>Mortgage calculator</h2><div class="subtle">Estimate your monthly repayment.</div></div></div>
+      <div class="mortgage-grid">
+        <div class="field"><label for="mCurrency">Currency</label><select id="mCurrency"></select></div>
+        <div class="field"><label for="mTerm">Loan term (years)</label><input id="mTerm" type="number" min="1" max="50" value="25"></div>
+        <div class="field"><label for="mPrice">Property price</label><input id="mPrice" inputmode="decimal" type="number" min="0" value="1500000"></div>
+        <div class="field"><label for="mDown">Down payment</label><input id="mDown" inputmode="decimal" type="number" min="0" value="300000"></div>
+        <div class="field"><label for="mRate">Annual interest (%)</label><input id="mRate" type="number" min="0" max="100" step=".1" value="5.5"></div>
+        <div class="field"><label for="mDownPct">Down payment (%)</label><input id="mDownPct" type="number" min="0" max="100" step=".5" value="20"></div>
+      </div>
+      <div class="mortgage-result"><div class="subtle">Estimated monthly payment</div><div class="big-payment" id="mPay">—</div><div class="subtle">Principal and interest only; fees and insurance excluded.</div></div>
+      <div class="mortgage-stats"><div class="mortgage-stat"><span>Loan amount</span><strong id="mLoan">—</strong></div><div class="mortgage-stat"><span>Total interest</span><strong id="mInterest">—</strong></div><div class="mortgage-stat"><span>Total paid</span><strong id="mTotal">—</strong></div></div>
+    </section>
+  </main>
+  <footer>Designed and maintained by Charandeep Singh · Exchange rates are indicative and may differ from provider rates.</footer>
+</div>
 
-        <nav class="nav" role="tablist" aria-label="Sections">
-            <div class="ind" id="ind"></div>
-            <button class="tab on" role="tab" aria-selected="true" type="button">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h12M15 3l4 4-4 4M17 17H5M9 13l-4 4 4 4"/></svg>Convert
-            </button>
-            <button class="tab" role="tab" aria-selected="false" type="button">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M9 12h.01M12 12h.01M15 12h.01M9 16h.01M12 16h.01M15 16h.01"/></svg>Calculator
-            </button>
-            <button class="tab" role="tab" aria-selected="false" type="button">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/></svg>Mortgage
-            </button>
-        </nav>
-    </div>
+<nav class="bottom-nav" aria-label="Main navigation">
+  <button class="nav-item active" data-panel="convert"><span class="nav-icon">⇄</span><span>Convert</span></button>
+  <button class="nav-item" data-panel="charts"><span class="nav-icon">⌁</span><span>Charts</span></button>
+  <button class="nav-item" data-panel="calculator"><span class="nav-icon">▦</span><span>Calculator</span></button>
+  <button class="nav-item" data-panel="mortgage"><span class="nav-icon">⌂</span><span>Mortgage</span></button>
+</nav>
 
-    <script>
-    (function() {
-        var CURRENCIES = ["USD", "AED", "INR", "GEL", "GBP", "EUR", "SGD"];
-        var API = "https://open.er-api.com/v6/latest/USD";
-        var CACHE_KEY = "fx-rates-v3";
-        // Approximate built-in rates, used only if live and saved rates are both unavailable.
-        var BACKUP = { USD: 1, AED: 3.6725, INR: 88, GEL: 2.7, GBP: 0.75, EUR: 0.86, SGD: 1.29 };
-        var HEADINGS = ["Currency converter", "Calculator", "Mortgage calculator"];
-        var rates = BACKUP;
+<div class="modal-backdrop" id="currencyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal"><div class="modal-head"><h3 id="modalTitle">Choose currency</h3><button class="icon-btn" id="closeModal" aria-label="Close currency picker">×</button></div><div class="search-wrap"><input id="currencySearch" type="search" placeholder="Search currency or country…" autocomplete="off"></div><div class="modal-list" id="currencyOptions"></div><div class="modal-note">Rates are indicative and are not a transaction quote.</div></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-        function $(id) { return document.getElementById(id); }
-        var fmt2 = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+<script>
+(() => {
+'use strict';
+const CURRENCIES = [
+ ['AED','UAE Dirham','🇦🇪'],['AFN','Afghan Afghani','🇦🇫'],['ALL','Albanian Lek','🇦🇱'],['AMD','Armenian Dram','🇦🇲'],['ARS','Argentine Peso','🇦🇷'],['AUD','Australian Dollar','🇦🇺'],['AZN','Azerbaijani Manat','🇦🇿'],['BAM','Bosnia-Herzegovina Mark','🇧🇦'],['BDT','Bangladeshi Taka','🇧🇩'],['BGN','Bulgarian Lev','🇧🇬'],['BHD','Bahraini Dinar','🇧🇭'],['BND','Brunei Dollar','🇧🇳'],['BOB','Bolivian Boliviano','🇧🇴'],['BRL','Brazilian Real','🇧🇷'],['CAD','Canadian Dollar','🇨🇦'],['CHF','Swiss Franc','🇨🇭'],['CLP','Chilean Peso','🇨🇱'],['CNY','Chinese Yuan','🇨🇳'],['COP','Colombian Peso','🇨🇴'],['CZK','Czech Koruna','🇨🇿'],['DKK','Danish Krone','🇩🇰'],['DZD','Algerian Dinar','🇩🇿'],['EGP','Egyptian Pound','🇪🇬'],['EUR','Euro','🇪🇺'],['GBP','British Pound','🇬🇧'],['GEL','Georgian Lari','🇬🇪'],['GHS','Ghanaian Cedi','🇬🇭'],['HKD','Hong Kong Dollar','🇭🇰'],['HRK','Croatian Kuna','🇭🇷'],['HUF','Hungarian Forint','🇭🇺'],['IDR','Indonesian Rupiah','🇮🇩'],['ILS','Israeli New Shekel','🇮🇱'],['INR','Indian Rupee','🇮🇳'],['IQD','Iraqi Dinar','🇮🇶'],['ISK','Icelandic Krona','🇮🇸'],['JOD','Jordanian Dinar','🇯🇴'],['JPY','Japanese Yen','🇯🇵'],['KES','Kenyan Shilling','🇰🇪'],['KRW','South Korean Won','🇰🇷'],['KWD','Kuwaiti Dinar','🇰🇼'],['KZT','Kazakhstani Tenge','🇰🇿'],['LBP','Lebanese Pound','🇱🇧'],['LKR','Sri Lankan Rupee','🇱🇰'],['MAD','Moroccan Dirham','🇲🇦'],['MDL','Moldovan Leu','🇲🇩'],['MUR','Mauritian Rupee','🇲🇺'],['MXN','Mexican Peso','🇲🇽'],['MYR','Malaysian Ringgit','🇲🇾'],['NGN','Nigerian Naira','🇳🇬'],['NOK','Norwegian Krone','🇳🇴'],['NPR','Nepalese Rupee','🇳🇵'],['NZD','New Zealand Dollar','🇳🇿'],['OMR','Omani Rial','🇴🇲'],['PEN','Peruvian Sol','🇵🇪'],['PHP','Philippine Peso','🇵🇭'],['PKR','Pakistani Rupee','🇵🇰'],['PLN','Polish Zloty','🇵🇱'],['QAR','Qatari Riyal','🇶🇦'],['RON','Romanian Leu','🇷🇴'],['RSD','Serbian Dinar','🇷🇸'],['RUB','Russian Ruble','🇷🇺'],['SAR','Saudi Riyal','🇸🇦'],['SEK','Swedish Krona','🇸🇪'],['SGD','Singapore Dollar','🇸🇬'],['THB','Thai Baht','🇹🇭'],['TND','Tunisian Dinar','🇹🇳'],['TRY','Turkish Lira','🇹🇷'],['TWD','New Taiwan Dollar','🇹🇼'],['TZS','Tanzanian Shilling','🇹🇿'],['UAH','Ukrainian Hryvnia','🇺🇦'],['UGX','Ugandan Shilling','🇺🇬'],['USD','US Dollar','🇺🇸'],['UYU','Uruguayan Peso','🇺🇾'],['UZS','Uzbekistani Som','🇺🇿'],['VND','Vietnamese Dong','🇻🇳'],['XAF','Central African CFA Franc','🌍'],['XOF','West African CFA Franc','🌍'],['ZAR','South African Rand','🇿🇦'],['ZMW','Zambian Kwacha','🇿🇲']
+];
+const BACKUP={USD:1,AED:3.6725,INR:88,GEL:2.7,GBP:.75,EUR:.86,SGD:1.29,ZAR:18.2,CHF:.89,CNY:7.2,JPY:150,CAD:1.36,AUD:1.52,NZD:1.65,SAR:3.75,QAR:3.64,KWD:.307,BHD:.377,OMR:.385};
+const $=id=>document.getElementById(id);
+const info=code=>CURRENCIES.find(c=>c[0]===code)||[code,code,'🌐'];
+const fmt=(n, max=2)=>new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:max}).format(Number.isFinite(n)?n:0);
+const compact=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:6}).format(n);
+let rates={...BACKUP}, rateTimestamp='', rateSource='approximate', from='USD', to='AED', chartRange=30, chartLoaded=false, chartData=[], modalSide='from', quickCodes=['AED','INR','EUR','GBP','GEL'], toastTimer;
+function parseAmount(v){const n=Number(String(v).replace(/,/g,''));return Number.isFinite(n)&&n>=0?n:0}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2600)}
+function setRateStatus(){const labels={live:'Live rates',cache:'Saved rates',approximate:'Approx. rates'};$('rateStatus').textContent=labels[rateSource]||'Rates';$('liveDot').style.background=rateSource==='live'?'var(--green)':rateSource==='cache'?'#e6c56a':'var(--red)';$('updatedText').textContent=rateTimestamp?('Updated '+rateTimestamp):'Indicative rates';}
+function convert(amount,base,target){if(!rates[base]||!rates[target])return null;return amount/rates[base]*rates[target]}
+function renderConverter(){
+ const amount=parseAmount($('amount').value),result=convert(amount,from,to);
+ $('fromFlag').textContent=info(from)[2];$('fromCode').textContent=from;$('toFlag').textContent=info(to)[2];$('toCode').textContent=to;
+ $('convertedAmount').value=result===null?'—':fmt(result,2);
+ const r=convert(1,from,to);$('rateText').textContent=r===null?'Rate unavailable':`1 ${from} = ${compact(r)} ${to}`;
+ $('quickList').innerHTML='';
+ quickCodes.filter(c=>c!==from).forEach(code=>{
+  const val=convert(amount,from,code),d=info(code),row=document.createElement('div');row.className='currency-row';
+  row.innerHTML=`<div class="currency-left"><div class="flag-circle">${d[2]}</div><div class="currency-meta"><div class="currency-code">${d[0]}</div><div class="currency-name">${d[1]}</div></div></div><div class="currency-right"><div class="currency-amount">${val===null?'—':fmt(val,2)}</div><div class="currency-unit">1 ${from} = ${convert(1,from,code)===null?'—':compact(convert(1,from,code))}</div></div>`;
+  row.title=`Use ${code} as target currency`;row.tabIndex=0;row.setAttribute('role','button');row.addEventListener('click',()=>{to=code;renderConverter();});row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();to=code;renderConverter();}});$('quickList').appendChild(row);
+ });
+ $('listCount').textContent=`${quickCodes.length} saved currencies`;
+ setRateStatus();if(chartLoaded)renderChartHeader();
+}
+async function loadRates(){
+ $('rateStatus').textContent='Updating…';
+ try{
+  const res=await fetch('https://open.er-api.com/v6/latest/USD',{cache:'no-store'});
+  if(!res.ok)throw Error('Rate request failed');const data=await res.json();if(data.result!=='success'||!data.rates)throw Error('Invalid rate data');
+  const fresh={};for(const [code] of CURRENCIES){if(Number.isFinite(data.rates[code]))fresh[code]=data.rates[code]}
+  fresh.USD=1;Object.assign(rates,fresh);rateSource='live';rateTimestamp=data.time_last_update_utc||new Date().toUTCString();
+  try{localStorage.setItem('fxconvert-rates',JSON.stringify({rates:fresh,time:rateTimestamp}))}catch(e){}
+ }catch(e){
+  try{const saved=JSON.parse(localStorage.getItem('fxconvert-rates')||'null');if(saved&&saved.rates){rates={...rates,...saved.rates};rateSource='cache';rateTimestamp=saved.time||''}else{rateSource='approximate';rateTimestamp=''}}catch(err){rateSource='approximate';rateTimestamp=''}
+ }
+ renderConverter();if(chartLoaded)loadHistory();
+}
+function populateSelect(el,selected){el.innerHTML='';CURRENCIES.forEach(c=>{const op=document.createElement('option');op.value=c[0];op.textContent=`${c[0]} — ${c[1]}`;op.selected=c[0]===selected;el.appendChild(op)})}
+function openPicker(side){modalSide=side;$('modalTitle').textContent=side==='from'?'Choose source currency':'Choose target currency';$('currencySearch').value='';renderPicker('');$('currencyModal').classList.add('open');setTimeout(()=>$('currencySearch').focus(),50)}
+function renderPicker(q){const list=$('currencyOptions');list.innerHTML='';const query=q.trim().toLowerCase();const filtered=CURRENCIES.filter(c=>c.join(' ').toLowerCase().includes(query));filtered.forEach(c=>{const b=document.createElement('button');b.className='currency-option'+(c[0]===(modalSide==='from'?from:to)?' selected':'');b.innerHTML=`<span class="flag-circle">${c[2]}</span><span class="currency-meta"><span class="currency-code">${c[0]}</span><br><span class="currency-name">${c[1]}</span></span><span class="check">${c[0]===(modalSide==='from'?from:to)?'✓':''}</span>`;b.addEventListener('click',()=>{if(modalSide==='from')from=c[0];else to=c[0];$('currencyModal').classList.remove('open');renderConverter();if(chartLoaded)loadHistory();});list.appendChild(b)});if(!filtered.length)list.innerHTML='<p class="subtle" style="padding:12px">No currencies found.</p>'}
+$('fromBtn').addEventListener('click',()=>openPicker('from'));$('toBtn').addEventListener('click',()=>openPicker('to'));$('manageCurrencies').addEventListener('click',()=>openPicker('to'));$('editListBtn').addEventListener('click',()=>openPicker('to'));$('closeModal').addEventListener('click',()=>$('currencyModal').classList.remove('open'));$('currencySearch').addEventListener('input',e=>renderPicker(e.target.value));$('currencyModal').addEventListener('click',e=>{if(e.target===$('currencyModal'))$('currencyModal').classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')$('currencyModal').classList.remove('open')});
+$('swapBtn').addEventListener('click',()=>{[from,to]=[to,from];renderConverter();if(chartLoaded)loadHistory()});$('amount').addEventListener('input',renderConverter);$('resetBtn').addEventListener('click',()=>{$('amount').value='0';renderConverter();$('amount').focus()});$('refreshBtn').addEventListener('click',loadRates);
+function showPanel(name){document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!=='panel-'+name);document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.panel===name));if(name==='charts'&&!chartLoaded){chartLoaded=true;loadHistory()}if(name==='mortgage')renderMortgage();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.panel)));
+/* Historical rates are requested from Frankfurter's public time-series API.
+   If a pair/period is unavailable, the UI clearly reports it rather than inventing data. */
+function dateISO(d){return d.toISOString().slice(0,10)}
+async function loadHistory(){
+ chartLoaded=true;chartData=[];$('chartMessage').textContent='Loading historical rates…';$('chartCurrent').textContent='—';$('chartChange').textContent='';$('chartPair').textContent=`${from} / ${to}`;$('chartPeriodLabel').textContent=`Past ${chartRange===7?'1 week':chartRange===30?'1 month':chartRange===90?'3 months':chartRange===365?'1 year':'5 years'}`;
+ document.querySelectorAll('.range-btn').forEach(b=>b.classList.toggle('active',Number(b.dataset.range)===chartRange));
+ const end=new Date();end.setDate(end.getDate()-1);const start=new Date(end);start.setDate(start.getDate()-chartRange);
+ try{
+  const url=`https://api.frankfurter.dev/v1/${dateISO(start)}..${dateISO(end)}?base=${encodeURIComponent(from)}&symbols=${encodeURIComponent(to)}`;
+  const res=await fetch(url);if(!res.ok)throw Error('Historical rates are not available for this currency pair.');const data=await res.json();
+  chartData=Object.entries(data.rates||{}).map(([date,obj])=>({date,value:Number(obj[to])})).filter(x=>Number.isFinite(x.value)).sort((a,b)=>a.date.localeCompare(b.date));
+  if(chartData.length<2)throw Error('Not enough historical data for this currency pair and period.');
+  const vals=chartData.map(x=>x.value),first=vals[0],last=vals[vals.length-1],pct=(last-first)/first*100;
+  $('chartCurrent').textContent=compact(last);$('chartChange').textContent=`${pct>=0?'+':''}${pct.toFixed(2)}% over period`;$('chartChange').style.color=pct>=0?'var(--green)':'var(--red)';
+  $('statHigh').textContent=compact(Math.max(...vals));$('statAvg').textContent=compact(vals.reduce((a,b)=>a+b,0)/vals.length);$('statLow').textContent=compact(Math.min(...vals));
+  $('chartMessage').textContent=`${chartData.length} daily observations · ${chartData[0].date} to ${chartData[chartData.length-1].date}`;drawChart();
+ }catch(err){$('chartMessage').textContent=err.message+' Try another currency or period.';$('chartCurrent').textContent='—';$('chartChange').textContent='Unavailable';$('statHigh').textContent='—';$('statAvg').textContent='—';$('statLow').textContent='—';drawChart()}
+}
+function renderChartHeader(){$('chartPair').textContent=`${from} / ${to}`}
+function drawChart(){
+ const canvas=$('historyChart'),ctx=canvas.getContext('2d'),rect=canvas.getBoundingClientRect(),dpr=window.devicePixelRatio||1;canvas.width=Math.max(1,rect.width*dpr);canvas.height=Math.max(1,rect.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);const w=rect.width,h=rect.height;ctx.clearRect(0,0,w,h);
+ const pad={l:8,r:8,t:12,b:22},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+ ctx.strokeStyle='#34353b';ctx.lineWidth=1;ctx.fillStyle='#888a96';ctx.font='10px system-ui';for(let i=0;i<4;i++){const y=pad.t+ch*i/3;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke()}
+ if(chartData.length<2){ctx.fillStyle='#777985';ctx.font='12px system-ui';ctx.textAlign='center';ctx.fillText('Historical chart unavailable',w/2,h/2);return}
+ const vals=chartData.map(p=>p.value),min=Math.min(...vals),max=Math.max(...vals),spread=max-min||Math.abs(max)*.01||1;
+ const x=i=>pad.l+i/(vals.length-1)*cw,y=v=>pad.t+(max-v)/spread*ch;
+ const grad=ctx.createLinearGradient(0,pad.t,0,pad.t+ch);grad.addColorStop(0,'rgba(154,156,255,.48)');grad.addColorStop(1,'rgba(154,156,255,.015)');
+ ctx.beginPath();vals.forEach((v,i)=>i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v)));ctx.lineTo(x(vals.length-1),pad.t+ch);ctx.lineTo(x(0),pad.t+ch);ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+ ctx.beginPath();vals.forEach((v,i)=>i?ctx.lineTo(x(i),y(v)):ctx.moveTo(x(i),y(v)));ctx.strokeStyle='#9a9cff';ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
+ ctx.fillStyle='#8b8d98';ctx.textAlign='left';ctx.fillText(chartData[0].date,pad.l,h-5);ctx.textAlign='right';ctx.fillText(chartData[chartData.length-1].date,w-pad.r,h-5);
+}
+$('ranges').addEventListener('click',e=>{const b=e.target.closest('[data-range]');if(!b)return;chartRange=Number(b.dataset.range);loadHistory()});$('chartRefresh').addEventListener('click',loadHistory);$('chartTarget').addEventListener('change',e=>{to=e.target.value;renderConverter();loadHistory()});populateSelect($('chartTarget'),to);const oldRender=renderConverter; // Keep chart target selector in sync with the chosen pair.
+const originalRender=renderConverter;
+function syncChartTarget(){if($('chartTarget').value!==to)$('chartTarget').value=to}
+const observer=new MutationObserver(syncChartTarget);observer.observe($('toCode'),{childList:true,subtree:true});
+window.addEventListener('resize',()=>{if(chartLoaded)drawChart()});
 
-        function parseNum(t) {
-            var n = parseFloat(String(t).replace(/,/g, ""));
-            return isFinite(n) && n > 0 ? n : 0;
-        }
-
-        /* Keep only valid characters while typing; optionally add thousands separators. */
-        function cleanField(el, decimals, commas) {
-            var raw = el.value;
-            var caret = el.selectionStart == null ? raw.length : el.selectionStart;
-            var bad = decimals ? /[^0-9.]/g : /[^0-9]/g;
-            var before = raw.slice(0, caret).replace(bad, "").length;
-            var v = raw.replace(bad, "");
-            var dot = v.indexOf(".");
-            if (dot !== -1) v = v.slice(0, dot + 1) + v.slice(dot + 1).replace(/\./g, "");
-            var parts = v.split(".");
-            var ip = parts[0].replace(/^0+(?=\d)/, "");
-            if (commas) ip = ip.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            el.value = parts.length > 1 ? ip + "." + parts[1] : ip;
-            var n = 0, i = 0;
-            while (i < el.value.length && n < before) { if (/[0-9.]/.test(el.value[i])) n++; i++; }
-            try { el.setSelectionRange(i, i); } catch (e) {}
-        }
-
-        function fit(el, min) {
-            el.style.fontSize = "";
-            var fs = parseFloat(getComputedStyle(el).fontSize);
-            while (el.scrollWidth > el.clientWidth && fs > min) { fs -= 1; el.style.fontSize = fs + "px"; }
-        }
-        function fitAll() {
-            var i, els = document.querySelectorAll(".val");
-            for (i = 0; i < els.length; i++) fit(els[i], 9);
-            fit($("calcBig"), 16);
-            fit($("mPay"), 12);
-        }
-
-        /* ---------- Currency converter ---------- */
-        var amountEl = $("amount"), baseEl = $("base"), rowsEl = $("rows"), statusEl = $("status");
-        var mcurEl = $("mcur"), mcurTouched = false;
-
-        function renderConvert() {
-            var amount = parseNum(amountEl.value), base = baseEl.value;
-            rowsEl.innerHTML = "";
-            CURRENCIES.forEach(function(code) {
-                var value = amount ? amount / rates[base] * rates[code] : 0;
-                var row = document.createElement("div");
-                row.className = "res" + (code === base ? " is-base" : "");
-                var left = document.createElement("span");
-                left.className = "code";
-                left.textContent = code;
-                if (code === base) {
-                    var tag = document.createElement("span");
-                    tag.className = "tag";
-                    tag.textContent = "base";
-                    left.appendChild(tag);
-                }
-                var right = document.createElement("span");
-                right.className = "val";
-                right.textContent = value ? fmt2.format(value) : "0";
-                row.appendChild(left);
-                row.appendChild(right);
-                rowsEl.appendChild(row);
-            });
-            fitAll();
-        }
-
-        function setStatus(text, warn) {
-            statusEl.textContent = text;
-            statusEl.className = "status" + (warn ? " warn" : "");
-        }
-        function save(r, t) { try { localStorage.setItem(CACHE_KEY, JSON.stringify({ rates: r, time: t })); } catch (e) {} }
-        function load() { try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (e) { return null; } }
-
-        function loadRates() {
-            fetch(API)
-                .then(function(res) { if (!res.ok) throw new Error("HTTP " + res.status); return res.json(); })
-                .then(function(data) {
-                    if (data.result !== "success") throw new Error("Bad response");
-                    var r = {};
-                    CURRENCIES.forEach(function(c) {
-                        if (!data.rates || !data.rates[c]) throw new Error("Missing " + c);
-                        r[c] = data.rates[c];
-                    });
-                    rates = r;
-                    var stamp = data.time_last_update_utc || new Date().toUTCString();
-                    save(r, stamp);
-                    setStatus("Rates updated: " + stamp.replace(/ \+0000$/, " UTC"));
-                    renderConvert();
-                })
-                .catch(function() {
-                    var saved = load();
-                    if (saved && saved.rates) {
-                        rates = saved.rates;
-                        setStatus("Live rates unavailable. Using saved rates from " + saved.time + ", which may be outdated.", true);
-                    } else {
-                        rates = BACKUP;
-                        setStatus("Live rates unavailable. Using approximate built-in rates, which may be outdated.", true);
-                    }
-                    renderConvert();
-                });
-        }
-
-        amountEl.addEventListener("input", function() { cleanField(amountEl, true, true); renderConvert(); });
-        amountEl.addEventListener("focus", function() { if (amountEl.value === "0") amountEl.select(); });
-        amountEl.addEventListener("blur", function() { if (amountEl.value.trim() === "") { amountEl.value = "0"; renderConvert(); } });
-        baseEl.addEventListener("change", function() {
-            if (!mcurTouched) { mcurEl.value = baseEl.value; renderMort(); }
-            renderConvert();
-        });
-        $("reset").addEventListener("click", function() { amountEl.value = "0"; renderConvert(); amountEl.focus(); });
-
-        /* ---------- Tap feedback (short vibration) ---------- */
-        function buzz() {
-            try {
-                var C = window.Capacitor;
-                if (C && C.Plugins && C.Plugins.Haptics) { C.Plugins.Haptics.impact({ style: "LIGHT" }); return; }
-            } catch (e) {}
-            try { if (navigator.vibrate) navigator.vibrate(12); } catch (e) {}
-        }
-
-        /* ---------- Calculator ---------- */
-        var KEYS = [["AC", "±", "%", "÷"], ["7", "8", "9", "×"], ["4", "5", "6", "−"], ["1", "2", "3", "+"], ["0", ".", "⌫", "="]];
-        var keysEl = $("keys");
-        KEYS.forEach(function(r, ri) {
-            r.forEach(function(k, ci) {
-                var b = document.createElement("button");
-                b.type = "button";
-                b.className = "k" + (ci === 3 ? " op" : ri === 0 ? " fn" : "");
-                b.textContent = k;
-                b.setAttribute("data-k", k);
-                if (k === "⌫") b.setAttribute("aria-label", "Delete");
-                keysEl.appendChild(b);
-            });
-        });
-
-        var cur = "0", prev = null, op = null, fresh = false, eq = false, expr = "";
-        function disp(s) {
-            if (s === "Error" || /e/.test(s)) return s;
-            var neg = s.charAt(0) === "-", t = neg ? s.slice(1) : s, p = t.split(".");
-            p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-            return (neg ? "-" : "") + p.join(".");
-        }
-        function str(n) { return isFinite(n) ? String(parseFloat(n.toPrecision(12))) : "Error"; }
-        function compute(a, b, o) {
-            if (o === "+") return a + b;
-            if (o === "−") return a - b;
-            if (o === "×") return a * b;
-            return b === 0 ? NaN : a / b;
-        }
-        function calcReset() { cur = "0"; prev = null; op = null; fresh = false; eq = false; expr = ""; }
-        function calcUpdate() {
-            $("calcExpr").textContent = expr;
-            $("calcBig").textContent = disp(cur);
-            fit($("calcBig"), 16);
-        }
-        function press(k) {
-            if (cur === "Error" && k !== "AC") calcReset();
-            if (/^[0-9]$/.test(k)) {
-                if (eq) calcReset();
-                if (fresh) { cur = "0"; fresh = false; }
-                if (cur.replace(/[-.]/g, "").length >= 15) return;
-                cur = cur === "0" ? k : cur === "-0" ? "-" + k : cur + k;
-            } else if (k === ".") {
-                if (eq) calcReset();
-                if (fresh) { cur = "0"; fresh = false; }
-                if (cur.indexOf(".") < 0) cur += ".";
-            } else if (k === "AC") {
-                calcReset();
-            } else if (k === "±") {
-                if (cur !== "0") cur = cur.charAt(0) === "-" ? cur.slice(1) : "-" + cur;
-            } else if (k === "%") {
-                var v = parseFloat(cur);
-                cur = str(op !== null && prev !== null ? parseFloat(prev) * v / 100 : v / 100);
-                fresh = false;
-            } else if (k === "⌫") {
-                if (eq || fresh) return;
-                cur = cur.length > 1 && !(cur.length === 2 && cur.charAt(0) === "-") ? cur.slice(0, -1) : "0";
-            } else if (k === "=") {
-                if (op !== null && prev !== null) {
-                    var res = compute(parseFloat(prev), parseFloat(cur), op);
-                    expr = disp(prev) + " " + op + " " + disp(cur) + " =";
-                    cur = str(res); op = null; prev = null; eq = true; fresh = false;
-                }
-            } else {
-                if (op !== null && !fresh) cur = str(compute(parseFloat(prev), parseFloat(cur), op));
-                if (cur === "Error") { op = null; prev = null; expr = ""; calcUpdate(); return; }
-                prev = cur; op = k; fresh = true; eq = false;
-                expr = disp(prev) + " " + op;
-            }
-            calcUpdate();
-        }
-        keysEl.addEventListener("pointerdown", function(e) {
-            var b = e.target.closest("button");
-            if (!b) return;
-            buzz();
-            b.classList.add("p");
-            setTimeout(function() { b.classList.remove("p"); }, 140);
-        });
-        keysEl.addEventListener("click", function(e) {
-            var b = e.target.closest("button");
-            if (b) press(b.getAttribute("data-k"));
-        });
-        document.addEventListener("keydown", function(e) {
-            if (idx !== 1 || e.ctrlKey || e.metaKey || e.altKey) return;
-            var t = e.target.tagName;
-            if (t === "INPUT" || t === "SELECT") return;
-            var map = { "*": "×", "/": "÷", "-": "−", "+": "+", ".": ".", "%": "%", "Enter": "=", "=": "=", "Backspace": "⌫", "Escape": "AC" };
-            var k = /^[0-9]$/.test(e.key) ? e.key : map[e.key];
-            if (k) { e.preventDefault(); press(k); }
-        });
-
-        /* ---------- Mortgage ---------- */
-        var mPrice = $("mPrice"), mDown = $("mDown"), mRate = $("mRate"), mTerm = $("mTerm");
-        function renderMort() {
-            var code = mcurEl.value;
-            var price = parseNum(mPrice.value), down = parseNum(mDown.value);
-            var rate = parseNum(mRate.value), years = parseNum(mTerm.value);
-            var loan = Math.max(price - down, 0), n = Math.round(years * 12), pay = 0;
-            if (loan > 0 && n > 0) {
-                var r = rate / 100 / 12;
-                pay = r > 0 ? loan * r / (1 - Math.pow(1 + r, -n)) : loan / n;
-            }
-            var total = pay * n, interest = pay ? total - loan : 0;
-            var pct = price ? Math.round(down / price * 1000) / 10 : 0;
-            $("lbPrice").textContent = "Home price (" + code + ")";
-            $("lbDown").textContent = "Down payment (" + pct + "%)";
-            $("mTitle").textContent = "Monthly payment · " + code;
-            $("mPay").textContent = fmt2.format(pay);
-            $("mLoan").textContent = fmt2.format(loan);
-            $("mInt").textContent = fmt2.format(interest);
-            $("mTot").textContent = fmt2.format(pay ? total : 0);
-            fit($("mPay"), 12);
-        }
-        [mPrice, mDown].forEach(function(el) { el.addEventListener("input", function() { cleanField(el, true, true); renderMort(); }); });
-        mRate.addEventListener("input", function() { cleanField(mRate, true, false); renderMort(); });
-        mTerm.addEventListener("input", function() { cleanField(mTerm, false, false); renderMort(); });
-        mcurEl.addEventListener("change", function() { mcurTouched = true; renderMort(); });
-
-        /* ---------- Tabs ---------- */
-        var tabs = document.querySelectorAll(".tab"), idx = 0;
-        function show(i) {
-            idx = i;
-            $("ind").style.transform = "translateX(" + (i * 100) + "%)";
-            for (var j = 0; j < tabs.length; j++) {
-                tabs[j].classList.toggle("on", j === i);
-                tabs[j].setAttribute("aria-selected", j === i ? "true" : "false");
-                $("p" + j).hidden = j !== i;
-            }
-            $("heading").textContent = HEADINGS[i];
-            fitAll();
-        }
-        for (var t = 0; t < tabs.length; t++) {
-            (function(i) {
-                tabs[i].addEventListener("pointerdown", buzz);
-                tabs[i].addEventListener("click", function() { show(i); });
-            })(t);
-        }
-
-        /* A focused field can nudge the fixed layout on some phones; put it back. */
-        document.addEventListener("focusout", function() {
-            document.querySelector(".app").scrollTop = 0;
-            window.scrollTo(0, 0);
-        });
-        window.addEventListener("resize", fitAll);
-
-        renderConvert();
-        renderMort();
-        calcUpdate();
-        loadRates();
-    })();
-    </script>
+/* Calculator: keypad and physical keyboard share the same operation handler. */
+const keyRows=[['AC','±','%','÷'],['7','8','9','×'],['4','5','6','−'],['1','2','3','+'],['0','.','⌫','=']];
+let cur='0',prev=null,op=null,fresh=false,eq=false,expr='';
+function calcFormat(s){if(s==='Error')return s;const parts=String(s).split('.');parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,',');return parts.join('.')}
+function calcStr(n){return Number.isFinite(n)?String(Number(n.toPrecision(12))):'Error'}
+function calcCompute(a,b,o){if(o==='+')return a+b;if(o==='−')return a-b;if(o==='×')return a*b;return b===0?NaN:a/b}
+function calcUpdate(){$('calcExpr').textContent=expr;$('calcResult').textContent=calcFormat(cur)}
+function press(k){
+ if(cur==='Error'&&k!=='AC'){cur='0';prev=null;op=null;expr=''}
+ if(/^\d$/.test(k)){if(eq){cur='0';expr='';eq=false}if(fresh){cur='0';fresh=false}if(cur.replace(/[-.]/g,'').length>=15)return;cur=cur==='0'?k:cur==='-0'?'-'+k:cur+k}
+ else if(k==='.'){if(eq){cur='0';expr='';eq=false}if(fresh){cur='0';fresh=false}if(!cur.includes('.'))cur+='.'}
+ else if(k==='AC'){cur='0';prev=null;op=null;fresh=false;eq=false;expr=''}
+ else if(k==='±'){if(cur!=='0')cur=cur.startsWith('-')?cur.slice(1):'-'+cur}
+ else if(k==='%'){const n=parseFloat(cur);cur=calcStr(op!==null&&prev!==null?parseFloat(prev)*n/100:n/100);fresh=false}
+ else if(k==='⌫'){if(!eq&&!fresh)cur=cur.length>1&&!(cur.length===2&&cur[0]==='-')?cur.slice(0,-1):'0'}
+ else if(k==='='){if(op!==null&&prev!==null){const result=calcCompute(parseFloat(prev),parseFloat(cur),op);expr=`${calcFormat(prev)} ${op} ${calcFormat(cur)} =`;cur=calcStr(result);op=null;prev=null;eq=true;fresh=false}}
+ else{if(op!==null&&!fresh)cur=calcStr(calcCompute(parseFloat(prev),parseFloat(cur),op));if(cur==='Error'){op=null;prev=null;expr='';calcUpdate();return}prev=cur;op=k;fresh=true;eq=false;expr=`${calcFormat(prev)} ${op}`}
+ calcUpdate()
+}
+keyRows.flat().forEach(k=>{const b=document.createElement('button');b.type='button';b.className='key'+(['AC','±','%'].includes(k)?' fn':'')+(['÷','×','−','+','='].includes(k)?' op':'');b.textContent=k;b.addEventListener('click',()=>press(k));$('keypad').appendChild(b)});
+$('calcClearTop').addEventListener('click',()=>press('AC'));
+document.addEventListener('keydown',e=>{if($('currencyModal').classList.contains('open'))return;if(! $('panel-calculator').hidden && !['INPUT','SELECT'].includes(e.target.tagName)){const map={'*':'×','/':'÷','-':'−','+':'+','Enter':'=','=':'=','Backspace':'⌫','Escape':'AC','%':'%'};const k=/^\d$/.test(e.key)?e.key:map[e.key];if(k){e.preventDefault();press(k)}}});
+/* Mortgage calculator with synchronized amount and percentage inputs. */
+let mortgageSync=false;
+function renderMortgage(){
+ const currency=$('mCurrency').value||'AED',price=Math.max(0,Number($('mPrice').value)||0),down=Math.min(price,Math.max(0,Number($('mDown').value)||0)),rate=Math.max(0,Number($('mRate').value)||0),years=Math.min(50,Math.max(1,Number($('mTerm').value)||1)),loan=Math.max(0,price-down),n=years*12,r=rate/1200;
+ const pay=loan===0?0:r===0?loan/n:loan*r/(1-Math.pow(1+r,-n)),total=pay*n;
+ $('mPay').textContent=`${currency} ${fmt(pay)}`;$('mLoan').textContent=`${currency} ${fmt(loan)}`;$('mInterest').textContent=`${currency} ${fmt(Math.max(0,total-loan))}`;$('mTotal').textContent=`${currency} ${fmt(total)}`;
+ if(!mortgageSync){mortgageSync=true;$('mDownPct').value=price?(down/price*100).toFixed(1):0;mortgageSync=false}
+}
+['mPrice','mDown','mRate','mTerm'].forEach(id=>$(id).addEventListener('input',renderMortgage));
+$('mDownPct').addEventListener('input',()=>{if(mortgageSync)return;mortgageSync=true;const pct=Math.min(100,Math.max(0,Number($('mDownPct').value)||0));$('mDown').value=Math.round((Number($('mPrice').value)||0)*pct/100);mortgageSync=false;renderMortgage()});
+$('mPrice').addEventListener('input',()=>{if(mortgageSync)return;mortgageSync=true;$('mDown').value=Math.round((Number($('mPrice').value)||0)*(Math.min(100,Math.max(0,Number($('mDownPct').value)||0))/100));mortgageSync=false;renderMortgage()});
+populateSelect($('mCurrency'),'AED');$('mCurrency').addEventListener('change',renderMortgage);
+function init(){renderConverter();renderMortgage();calcUpdate();populateSelect($('chartTarget'),to);loadRates()}
+init();
+})();
+</script>
 </body>
 </html>
