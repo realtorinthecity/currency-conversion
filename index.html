@@ -4,11 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#111214">
-<link rel="icon" href="./favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
-<link rel="manifest" href="./site.webmanifest">
 <title>FX Convert — Currency, made clear</title>
 <style>
 :root{color-scheme:dark;--bg:#111214;--panel:#1b1c20;--panel2:#24252a;--line:#303137;--text:#f4f4f6;--muted:#999ba5;--accent:#9a9cff;--accent2:#c4c5ff;--green:#73d7a4;--red:#ff8e99;--radius:22px;--shadow:0 16px 44px #0005}
@@ -16,6 +11,9 @@
 @media(max-width:800px){.app{padding:20px 16px 105px}.layout{grid-template-columns:1fr}.converter-card{grid-row:auto}.topbar{margin-bottom:20px}.card{padding:20px}.chart-card{min-height:0}.chart-wrap{height:190px}.bottom-nav{display:flex;position:fixed;z-index:10;bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;padding:7px;background:#222328eF;border:1px solid #414249;border-radius:20px;box-shadow:0 12px 35px #0008;backdrop-filter:blur(22px);gap:4px}.nav-item{flex:1;min-width:0;border:0;background:transparent;color:#a5a6b0;border-radius:14px;padding:8px 4px 7px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;font-size:10px;font-weight:650}.nav-item .nav-icon{font-size:19px;line-height:1}.nav-item.active{background:#353641;color:#d4d5ff}.nav-item.active .nav-icon{color:var(--accent2)}footer{margin-bottom:10px}.toast{bottom:100px}}
 @media(max-width:390px){.app{padding:15px 11px 100px}.brand-mark{width:40px;height:40px}.brand h1{font-size:17px}.top-actions .pill{padding:9px 10px;font-size:12px}.card{padding:16px}.currency-btn{padding:8px}.amount-box{padding:14px 12px}.stats{gap:6px}.stat{padding:9px}.stat strong{font-size:12px}.mortgage-grid{gap:9px}}
 @media(min-width:801px){.bottom-nav{display:flex;position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:10;padding:7px;background:#222328eF;border:1px solid #414249;border-radius:18px;box-shadow:0 12px 35px #0008;backdrop-filter:blur(22px);gap:4px}.nav-item{border:0;background:transparent;color:#a5a6b0;border-radius:12px;padding:10px 18px;display:flex;align-items:center;gap:9px;font-size:12px;font-weight:650}.nav-item.active{background:#353641;color:#d4d5ff}}
+
+@media(prefers-color-scheme:light){:root{--bg:#f3f4f8;--panel:#ffffff;--text:#20212a;--muted:#686b78;--line:#dedfe7;--accent:#7779e8;--accent2:#5f61cf;--green:#16855b;--red:#c23d50;--shadow:0 12px 35px #18204412}html{background:var(--bg)}body{background:radial-gradient(ellipse at 50% -20%,#e4e5fb 0,transparent 52%),var(--bg);color:var(--text)}.card{background:linear-gradient(145deg,#fff,#f9f9fc);border-color:#e1e2eb}.pill,.icon-btn{background:#ffffffb8;color:var(--text);border-color:#dfe0e8}.amount-box,.calculator-display,.chart-controls,.stat,.field input,.field select,.search-wrap input{background:#f5f5fa;color:var(--text);border-color:#dedfe7}.currency-btn,.flag-circle,.key{background:#eeeff6;color:var(--text);border-color:#dedfe7}.currency-row:hover{background:#f0f0f8}.bottom-nav{background:#ffffffa8;border-color:#ffffffc7;box-shadow:0 12px 35px #1720441c}.nav-item{color:#686b78}.nav-item.active{background:#e9e9ff;color:#34358a}.nav-item.active .nav-icon{color:#5f61cf}.key.op{background:#999aff;color:#15151e}.key.fn{background:#e9e9f8}.modal{background:#fff;color:#20212a;border-color:#dedfe7}.currency-option{color:#20212a}.currency-option:hover,.currency-option.selected{background:#f0f0f8}.modal-note{color:#686b78}.toast{background:#fff;color:#20212a;border-color:#dedfe7}.mortgage-result{background:linear-gradient(130deg,#eeeeff,#f8f8fc);border-color:#d9d9f4}}
+.bottom-nav{background:color-mix(in srgb,var(--panel) 48%,transparent);border-color:color-mix(in srgb,var(--text) 15%,transparent);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%)}.share-wrap{margin-left:10px;padding-left:10px;border-left:1px solid color-mix(in srgb,var(--text) 18%,transparent);display:flex;align-items:center}.share-btn{border:1px solid color-mix(in srgb,var(--text) 18%,transparent);background:color-mix(in srgb,var(--panel) 36%,transparent);color:var(--text);border-radius:15px;padding:10px 14px;display:flex;align-items:center;gap:8px;font-weight:700;backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:0 5px 18px #00000012}.share-btn:active{transform:scale(.97)}.quick-check{width:20px;height:20px;accent-color:var(--accent2)}.quick-select-row{display:flex;align-items:center;gap:12px}.quick-picker-actions{display:flex;gap:10px;padding:12px 18px 18px;border-top:1px solid var(--line)}.quick-picker-actions button{flex:1;padding:12px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--text);font-weight:700}.quick-picker-actions .primary{background:var(--accent);color:#171720;border-color:transparent}.key{border-radius:50%;aspect-ratio:1;min-height:0;width:100%;max-width:78px;justify-self:center}.keypad{gap:10px;justify-items:center}.key.zero{grid-column:span 1}.calc-expression{height:auto;min-height:22px}.bottom-nav{width:max-content;max-width:calc(100vw - 24px)}@media(max-width:800px){.bottom-nav{left:12px;right:12px;width:auto;justify-content:space-between}.nav-item{padding:8px 5px}.share-wrap{margin-left:4px;padding-left:6px}.share-btn{padding:10px 11px}.share-label{display:none}.key{max-width:70px}.keypad{gap:8px}}@media(max-width:390px){.share-btn{padding:9px}.share-wrap{margin-left:2px;padding-left:4px}.keypad{gap:5px}}
 </style>
 </head>
 <body>
@@ -37,7 +35,7 @@
       <div class="section-divider"></div>
       <div class="list-footer"><div class="section-title">Quick conversions</div><button class="text-btn" id="editListBtn">Edit list ↗</button></div>
       <div class="currency-list" id="quickList"></div>
-      <div class="list-footer"><span class="subtle" id="listCount">Popular currencies</span><button class="text-btn" id="resetBtn">Reset amount</button></div>
+      <div class="list-footer"><span class="subtle" id="listCount">Popular currencies</span><button class="text-btn" id="resetBtn">Reset amount</button></div><div class="subtle" style="margin-top:8px;font-size:11px">Exchange rates are indicative and may differ from provider rates.</div>
     </section>
 
     <section class="card chart-card panel" id="panel-charts" hidden>
@@ -49,7 +47,7 @@
     </section>
 
     <section class="card tool-card panel" id="panel-calculator" hidden>
-      <div class="card-head"><div><div class="eyebrow">Everyday tool</div><h2>Calculator</h2><div class="subtle">A simple, reliable pocket calculator.</div></div><button class="icon-btn" id="calcClearTop" aria-label="Clear calculator">⌫</button></div>
+      <div class="card-head"><div><div class="eyebrow">Everyday tool</div><h2>Calculator</h2><div class="subtle">A simple, reliable pocket calculator.</div></div></div>
       <div class="calculator-display"><div class="calc-expression" id="calcExpr"></div><div class="calc-result" id="calcResult">0</div></div>
       <div class="keypad" id="keypad"></div>
     </section>
@@ -68,7 +66,7 @@
       <div class="mortgage-stats"><div class="mortgage-stat"><span>Loan amount</span><strong id="mLoan">—</strong></div><div class="mortgage-stat"><span>Total interest</span><strong id="mInterest">—</strong></div><div class="mortgage-stat"><span>Total paid</span><strong id="mTotal">—</strong></div></div>
     </section>
   </main>
-  <footer>Designed and maintained by Charandeep Singh · Exchange rates are indicative and may differ from provider rates.</footer>
+  <footer><div>Designed and maintained by Charandeep Singh</div></footer>
 </div>
 
 <nav class="bottom-nav" aria-label="Main navigation">
@@ -76,13 +74,15 @@
   <button class="nav-item" data-panel="charts"><span class="nav-icon">⌁</span><span>Charts</span></button>
   <button class="nav-item" data-panel="calculator"><span class="nav-icon">▦</span><span>Calculator</span></button>
   <button class="nav-item" data-panel="mortgage"><span class="nav-icon">⌂</span><span>Mortgage</span></button>
+  <div class="share-wrap"><button class="share-btn" id="shareBtn" type="button" aria-label="Share screenshot of current tab"><span aria-hidden="true">↗</span><span class="share-label">Share</span></button></div>
 </nav>
 
 <div class="modal-backdrop" id="currencyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal"><div class="modal-head"><h3 id="modalTitle">Choose currency</h3><button class="icon-btn" id="closeModal" aria-label="Close currency picker">×</button></div><div class="search-wrap"><input id="currencySearch" type="search" placeholder="Search currency or country…" autocomplete="off"></div><div class="modal-list" id="currencyOptions"></div><div class="modal-note">Rates are indicative and are not a transaction quote.</div></div>
+  <div class="modal"><div class="modal-head"><h3 id="modalTitle">Choose currency</h3><button class="icon-btn" id="closeModal" aria-label="Close currency picker">×</button></div><div class="search-wrap"><input id="currencySearch" type="search" placeholder="Search currency or country…" autocomplete="off"></div><div class="modal-list" id="currencyOptions"></div><div class="modal-note" id="modalNote">Rates are indicative and are not a transaction quote.</div><div class="quick-picker-actions" id="quickPickerActions" hidden><button id="cancelQuickEdit" type="button">Cancel</button><button id="saveQuickEdit" class="primary" type="button">Save list</button></div></div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
 (() => {
 'use strict';
@@ -94,13 +94,14 @@ const $=id=>document.getElementById(id);
 const info=code=>CURRENCIES.find(c=>c[0]===code)||[code,code,'🌐'];
 const fmt=(n, max=2)=>new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:max}).format(Number.isFinite(n)?n:0);
 const compact=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:6}).format(n);
-let rates={...BACKUP}, rateTimestamp='', rateSource='approximate', from='USD', to='AED', chartRange=30, chartLoaded=false, chartData=[], modalSide='from', quickCodes=['AED','INR','EUR','GBP','GEL'], toastTimer;
+let rates={...BACKUP}, rateTimestamp='', rateSource='approximate', from='USD', to='AED', chartRange=30, chartLoaded=false, chartData=[], modalSide='from', pickerMode='currency', pendingQuickCodes=[], quickCodes=['AED','INR','EUR','GBP','GEL'], toastTimer;
 function parseAmount(v){const n=Number(String(v).replace(/,/g,''));return Number.isFinite(n)&&n>=0?n:0}
 function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2600)}
 function setRateStatus(){const labels={live:'Live rates',cache:'Saved rates',approximate:'Approx. rates'};$('rateStatus').textContent=labels[rateSource]||'Rates';$('liveDot').style.background=rateSource==='live'?'var(--green)':rateSource==='cache'?'#e6c56a':'var(--red)';$('updatedText').textContent=rateTimestamp?('Updated '+rateTimestamp):'Indicative rates';}
 function convert(amount,base,target){if(!rates[base]||!rates[target])return null;return amount/rates[base]*rates[target]}
 function renderConverter(){
  const amount=parseAmount($('amount').value),result=convert(amount,from,to);
+ $('amount').value=fmt(amount,2).replace(/\.00$/,'');
  $('fromFlag').textContent=info(from)[2];$('fromCode').textContent=from;$('toFlag').textContent=info(to)[2];$('toCode').textContent=to;
  $('convertedAmount').value=result===null?'—':fmt(result,2);
  const r=convert(1,from,to);$('rateText').textContent=r===null?'Rate unavailable':`1 ${from} = ${compact(r)} ${to}`;
@@ -108,9 +109,9 @@ function renderConverter(){
  quickCodes.filter(c=>c!==from).forEach(code=>{
   const val=convert(amount,from,code),d=info(code),row=document.createElement('div');row.className='currency-row';
   row.innerHTML=`<div class="currency-left"><div class="flag-circle">${d[2]}</div><div class="currency-meta"><div class="currency-code">${d[0]}</div><div class="currency-name">${d[1]}</div></div></div><div class="currency-right"><div class="currency-amount">${val===null?'—':fmt(val,2)}</div><div class="currency-unit">1 ${from} = ${convert(1,from,code)===null?'—':compact(convert(1,from,code))}</div></div>`;
-  row.title=`Use ${code} as target currency`;row.tabIndex=0;row.setAttribute('role','button');row.addEventListener('click',()=>{to=code;renderConverter();});row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();to=code;renderConverter();}});$('quickList').appendChild(row);
+  row.title=`Quick conversion to ${code}`;row.tabIndex=0;row.setAttribute('role','group');$('quickList').appendChild(row);
  });
- $('listCount').textContent=`${quickCodes.length} saved currencies`;
+ $('listCount').textContent=`${quickCodes.length} quick currencies`;
  setRateStatus();if(chartLoaded)renderChartHeader();
 }
 async function loadRates(){
@@ -127,12 +128,15 @@ async function loadRates(){
  renderConverter();if(chartLoaded)loadHistory();
 }
 function populateSelect(el,selected){el.innerHTML='';CURRENCIES.forEach(c=>{const op=document.createElement('option');op.value=c[0];op.textContent=`${c[0]} — ${c[1]}`;op.selected=c[0]===selected;el.appendChild(op)})}
-function openPicker(side){modalSide=side;$('modalTitle').textContent=side==='from'?'Choose source currency':'Choose target currency';$('currencySearch').value='';renderPicker('');$('currencyModal').classList.add('open');setTimeout(()=>$('currencySearch').focus(),50)}
-function renderPicker(q){const list=$('currencyOptions');list.innerHTML='';const query=q.trim().toLowerCase();const filtered=CURRENCIES.filter(c=>c.join(' ').toLowerCase().includes(query));filtered.forEach(c=>{const b=document.createElement('button');b.className='currency-option'+(c[0]===(modalSide==='from'?from:to)?' selected':'');b.innerHTML=`<span class="flag-circle">${c[2]}</span><span class="currency-meta"><span class="currency-code">${c[0]}</span><br><span class="currency-name">${c[1]}</span></span><span class="check">${c[0]===(modalSide==='from'?from:to)?'✓':''}</span>`;b.addEventListener('click',()=>{if(modalSide==='from')from=c[0];else to=c[0];$('currencyModal').classList.remove('open');renderConverter();if(chartLoaded)loadHistory();});list.appendChild(b)});if(!filtered.length)list.innerHTML='<p class="subtle" style="padding:12px">No currencies found.</p>'}
-$('fromBtn').addEventListener('click',()=>openPicker('from'));$('toBtn').addEventListener('click',()=>openPicker('to'));$('manageCurrencies').addEventListener('click',()=>openPicker('to'));$('editListBtn').addEventListener('click',()=>openPicker('to'));$('closeModal').addEventListener('click',()=>$('currencyModal').classList.remove('open'));$('currencySearch').addEventListener('input',e=>renderPicker(e.target.value));$('currencyModal').addEventListener('click',e=>{if(e.target===$('currencyModal'))$('currencyModal').classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')$('currencyModal').classList.remove('open')});
-$('swapBtn').addEventListener('click',()=>{[from,to]=[to,from];renderConverter();if(chartLoaded)loadHistory()});$('amount').addEventListener('input',renderConverter);$('resetBtn').addEventListener('click',()=>{$('amount').value='0';renderConverter();$('amount').focus()});$('refreshBtn').addEventListener('click',loadRates);
-function showPanel(name){document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!=='panel-'+name);document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.panel===name));if(name==='charts'&&!chartLoaded){chartLoaded=true;loadHistory()}if(name==='mortgage')renderMortgage();window.scrollTo({top:0,behavior:'smooth'})}
+function openPicker(side){pickerMode='currency';modalSide=side;$('modalTitle').textContent=side==='from'?'Choose source currency':'Choose target currency';$('modalNote').textContent='Rates are indicative and are not a transaction quote.';$('quickPickerActions').hidden=true;$('currencySearch').value='';renderPicker('');$('currencyModal').classList.add('open');setTimeout(()=>$('currencySearch').focus(),50)}
+function openQuickEditor(){pickerMode='quick';pendingQuickCodes=[...quickCodes];$('modalTitle').textContent='Edit quick conversions';$('modalNote').textContent='Choose between 1 and 5 currencies. This list does not change the Recipient gets currency.';$('quickPickerActions').hidden=false;$('currencySearch').value='';renderPicker('');$('currencyModal').classList.add('open');setTimeout(()=>$('currencySearch').focus(),50)}
+function renderPicker(q){const list=$('currencyOptions');list.innerHTML='';const query=q.trim().toLowerCase();const filtered=CURRENCIES.filter(c=>c.join(' ').toLowerCase().includes(query));filtered.forEach(c=>{const b=document.createElement('button');b.type='button';if(pickerMode==='quick'){const checked=pendingQuickCodes.includes(c[0]);b.className='currency-option'+(checked?' selected':'');b.innerHTML=`<input class="quick-check" type="checkbox" tabindex="-1" ${checked?'checked':''} aria-label="Add ${c[0]}"><span class="flag-circle">${c[2]}</span><span class="currency-meta"><span class="currency-code">${c[0]}</span><br><span class="currency-name">${c[1]}</span></span>`;b.addEventListener('click',()=>{const idx=pendingQuickCodes.indexOf(c[0]);if(idx>=0)pendingQuickCodes.splice(idx,1);else if(pendingQuickCodes.length<5)pendingQuickCodes.push(c[0]);else toast('Choose a maximum of 5 currencies');renderPicker($('currencySearch').value)});}else{b.className='currency-option'+(c[0]===(modalSide==='from'?from:to)?' selected':'');b.innerHTML=`<span class="flag-circle">${c[2]}</span><span class="currency-meta"><span class="currency-code">${c[0]}</span><br><span class="currency-name">${c[1]}</span></span><span class="check">${c[0]===(modalSide==='from'?from:to)?'✓':''}</span>`;b.addEventListener('click',()=>{if(modalSide==='from')from=c[0];else to=c[0];$('currencyModal').classList.remove('open');renderConverter();if(chartLoaded)loadHistory();});}list.appendChild(b)});if(!filtered.length)list.innerHTML='<p class="subtle" style="padding:12px">No currencies found.</p>'}
+$('fromBtn').addEventListener('click',()=>openPicker('from'));$('toBtn').addEventListener('click',()=>openPicker('to'));$('manageCurrencies').addEventListener('click',openQuickEditor);$('editListBtn').addEventListener('click',openQuickEditor);$('saveQuickEdit').addEventListener('click',()=>{if(pendingQuickCodes.length<1){toast('Choose at least 1 currency');return}quickCodes=[...pendingQuickCodes];try{localStorage.setItem('fxconvert-quick-codes',JSON.stringify(quickCodes))}catch(e){}$('currencyModal').classList.remove('open');renderConverter();toast('Quick conversions updated')});$('cancelQuickEdit').addEventListener('click',()=>$('currencyModal').classList.remove('open'));$('closeModal').addEventListener('click',()=>$('currencyModal').classList.remove('open'));$('currencySearch').addEventListener('input',e=>renderPicker(e.target.value));$('currencyModal').addEventListener('click',e=>{if(e.target===$('currencyModal'))$('currencyModal').classList.remove('open')});document.addEventListener('keydown',e=>{if(e.key==='Escape')$('currencyModal').classList.remove('open')});
+try{const savedQuick=JSON.parse(localStorage.getItem('fxconvert-quick-codes')||'null');if(Array.isArray(savedQuick)&&savedQuick.length>=1&&savedQuick.length<=5)quickCodes=savedQuick.filter(c=>CURRENCIES.some(x=>x[0]===c));}catch(e){}
+$('swapBtn').addEventListener('click',()=>{[from,to]=[to,from];renderConverter();if(chartLoaded)loadHistory()});$('amount').addEventListener('input',()=>{const el=$('amount'),pos=el.selectionStart;renderConverter();try{el.setSelectionRange(pos,pos)}catch(e){}});$('amount').addEventListener('blur',()=>{$('amount').value=fmt(parseAmount($('amount').value),2).replace(/\.00$/,'')});$('resetBtn').addEventListener('click',()=>{$('amount').value='0';renderConverter();$('amount').focus()});$('refreshBtn').addEventListener('click',loadRates);
+function showPanel(name){document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!=='panel-'+name);$('refreshBtn').hidden=name==='calculator';document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.panel===name));if(name==='charts'&&!chartLoaded){chartLoaded=true;loadHistory()}if(name==='mortgage')renderMortgage();window.scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('.nav-item').forEach(b=>b.addEventListener('click',()=>showPanel(b.dataset.panel)));
+$('shareBtn').addEventListener('click',async()=>{const active=document.querySelector('.panel:not([hidden])');if(!active){toast('Nothing to capture');return}const btn=$('shareBtn');btn.disabled=true;const old=btn.innerHTML;btn.innerHTML='<span>…</span><span class="share-label">Preparing</span>';try{if(!window.html2canvas)throw Error('Screenshot helper did not load. Check your internet connection.');const canvas=await html2canvas(active,{backgroundColor:getComputedStyle(document.body).backgroundColor,scale:2,useCORS:true,logging:false});const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!blob)throw Error('Could not create screenshot');const file=new File([blob],`fx-convert-${active.id.replace('panel-','')}.png`,{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'FX Convert',text:'Currency conversion details'});}else{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=file.name;a.click();URL.revokeObjectURL(a.href);toast('Screenshot saved. You can now share it with your client.')}}catch(e){toast(e.message||'Unable to share screenshot')}finally{btn.disabled=false;btn.innerHTML=old}});
 /* Historical rates are requested from Frankfurter's public time-series API.
    If a pair/period is unavailable, the UI clearly reports it rather than inventing data. */
 function dateISO(d){return d.toISOString().slice(0,10)}
@@ -141,10 +145,17 @@ async function loadHistory(){
  document.querySelectorAll('.range-btn').forEach(b=>b.classList.toggle('active',Number(b.dataset.range)===chartRange));
  const end=new Date();end.setDate(end.getDate()-1);const start=new Date(end);start.setDate(start.getDate()-chartRange);
  try{
-  const url=`https://api.frankfurter.dev/v1/${dateISO(start)}..${dateISO(end)}?base=${encodeURIComponent(from)}&symbols=${encodeURIComponent(to)}`;
-  const res=await fetch(url);if(!res.ok)throw Error('Historical rates are not available for this currency pair.');const data=await res.json();
-  chartData=Object.entries(data.rates||{}).map(([date,obj])=>({date,value:Number(obj[to])})).filter(x=>Number.isFinite(x.value)).sort((a,b)=>a.date.localeCompare(b.date));
-  if(chartData.length<2)throw Error('Not enough historical data for this currency pair and period.');
+  if(from==='AED'||to==='AED'){
+   /* AED is absent from ECB-based Frankfurter history. Use dated snapshots from the public currency-api dataset instead. */
+   const span=chartRange,step=span<=90?1:span<=365?7:14,dates=[];for(let d=new Date(start);d<=end;d.setDate(d.getDate()+step))dates.push(dateISO(d));if(dates[dates.length-1]!==dateISO(end))dates.push(dateISO(end));
+   const points=[];for(let i=0;i<dates.length;i+=8){const batch=dates.slice(i,i+8);const rows=await Promise.all(batch.map(async date=>{try{const url=`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${date}/currencies/${from.toLowerCase()}/${to.toLowerCase()}.json`;const res=await fetch(url);if(!res.ok)return null;const obj=await res.json();const value=Number(obj[to.toLowerCase()]);return Number.isFinite(value)?{date,value}:null}catch(e){return null}}));points.push(...rows.filter(Boolean));}
+   chartData=points.sort((a,b)=>a.date.localeCompare(b.date));
+  }else{
+   const url=`https://api.frankfurter.dev/v1/${dateISO(start)}..${dateISO(end)}?base=${encodeURIComponent(from)}&symbols=${encodeURIComponent(to)}`;
+   const res=await fetch(url);if(!res.ok)throw Error('Historical rates are not available for this currency pair.');const data=await res.json();
+   chartData=Object.entries(data.rates||{}).map(([date,obj])=>({date,value:Number(obj[to])})).filter(x=>Number.isFinite(x.value)).sort((a,b)=>a.date.localeCompare(b.date));
+  }
+  if(chartData.length<2)throw Error((from==='AED'||to==='AED')?'The historical AED dataset did not return enough observations for this period. Try a shorter range.':'Not enough historical data for this currency pair and period.');
   const vals=chartData.map(x=>x.value),first=vals[0],last=vals[vals.length-1],pct=(last-first)/first*100;
   $('chartCurrent').textContent=compact(last);$('chartChange').textContent=`${pct>=0?'+':''}${pct.toFixed(2)}% over period`;$('chartChange').style.color=pct>=0?'var(--green)':'var(--red)';
   $('statHigh').textContent=compact(Math.max(...vals));$('statAvg').textContent=compact(vals.reduce((a,b)=>a+b,0)/vals.length);$('statLow').textContent=compact(Math.min(...vals));
@@ -183,14 +194,14 @@ function press(k){
  else if(k==='.'){if(eq){cur='0';expr='';eq=false}if(fresh){cur='0';fresh=false}if(!cur.includes('.'))cur+='.'}
  else if(k==='AC'){cur='0';prev=null;op=null;fresh=false;eq=false;expr=''}
  else if(k==='±'){if(cur!=='0')cur=cur.startsWith('-')?cur.slice(1):'-'+cur}
- else if(k==='%'){const n=parseFloat(cur);cur=calcStr(op!==null&&prev!==null?parseFloat(prev)*n/100:n/100);fresh=false}
+ else if(k==='%'){const n=parseFloat(cur),base=(op!==null&&prev!==null)?parseFloat(prev):1;expr=op!==null&&prev!==null?`${calcFormat(prev)} ${op} ${calcFormat(cur)}%`:`${calcFormat(cur)}%`;cur=calcStr(base*n/100);fresh=false}
  else if(k==='⌫'){if(!eq&&!fresh)cur=cur.length>1&&!(cur.length===2&&cur[0]==='-')?cur.slice(0,-1):'0'}
  else if(k==='='){if(op!==null&&prev!==null){const result=calcCompute(parseFloat(prev),parseFloat(cur),op);expr=`${calcFormat(prev)} ${op} ${calcFormat(cur)} =`;cur=calcStr(result);op=null;prev=null;eq=true;fresh=false}}
- else{if(op!==null&&!fresh)cur=calcStr(calcCompute(parseFloat(prev),parseFloat(cur),op));if(cur==='Error'){op=null;prev=null;expr='';calcUpdate();return}prev=cur;op=k;fresh=true;eq=false;expr=`${calcFormat(prev)} ${op}`}
+ else{if(op!==null&&!fresh){cur=calcStr(calcCompute(parseFloat(prev),parseFloat(cur),op));if(cur==='Error'){op=null;prev=null;expr='';calcUpdate();return}}prev=cur;op=k;fresh=true;eq=false;expr=`${calcFormat(prev)} ${op}`} 
  calcUpdate()
 }
 keyRows.flat().forEach(k=>{const b=document.createElement('button');b.type='button';b.className='key'+(['AC','±','%'].includes(k)?' fn':'')+(['÷','×','−','+','='].includes(k)?' op':'');b.textContent=k;b.addEventListener('click',()=>press(k));$('keypad').appendChild(b)});
-$('calcClearTop').addEventListener('click',()=>press('AC'));
+
 document.addEventListener('keydown',e=>{if($('currencyModal').classList.contains('open'))return;if(! $('panel-calculator').hidden && !['INPUT','SELECT'].includes(e.target.tagName)){const map={'*':'×','/':'÷','-':'−','+':'+','Enter':'=','=':'=','Backspace':'⌫','Escape':'AC','%':'%'};const k=/^\d$/.test(e.key)?e.key:map[e.key];if(k){e.preventDefault();press(k)}}});
 /* Mortgage calculator with synchronized amount and percentage inputs. */
 let mortgageSync=false;
